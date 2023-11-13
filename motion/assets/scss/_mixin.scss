@@ -1,0 +1,164 @@
+@charset "utf-8";
+
+
+// float 해제
+@mixin clearBoth() {
+    &:after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+// 말줄임
+@mixin textOverflowLine($line){
+    display:-webkit-box;
+    -webkit-line-clamp:$line;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+// 밴더프리픽스
+@mixin prefix($property, $value) {
+    $prefixes: webkit, moz, ms, o;
+    @each $prefix in $prefixes {
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+    // 기본
+    #{$property}: $value;
+}
+// 트랜지션
+@mixin transition($prop: all, $duration: 0.5s, $timing: ease , $delay : 0) {
+    transition: $prop $duration $timing $delay;
+}
+
+// @mixin@ keyword Arguments 
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+// animation
+@mixin rotateAnimate($deg,$time,$delay){
+    transition: all $time ease $delay;
+    transform: rotate($deg);
+}
+
+// @mixin@  mediaQuery 디바이스별 적용 @mixin@ 
+@mixin mobile{
+    @media screen and (max-width: 480px) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media screen and (min-width: 480px) and (max-width: 1920px) {
+        @content;
+    }
+} 
+@mixin iphoneSe {
+    @media screen and (min-width: 350px) and (max-width: 375px) {
+        @content;
+    }
+}  
+// @mixin desktop {
+//     @media screen and (min-width: 1024px) {
+//         @content;
+//     }
+// }
+
+// 포지션 정렬 기본은  left / top 가운데 정렬
+@mixin posAlign($left:null){
+    @if($left=="left"){
+        left:50%;
+        transform: translateX(-50%);
+    }
+    @else if($left=="top"){
+        top:50%;
+        transform: translateY(-50%);
+    }
+    @else{
+        left:50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+    }
+}
+
+// 그라디언트 버튼 기본은 흰색 검은색
+// 왼쪽에서 우측
+@mixin GradientHorizontal($color1:#fff,$color2:#000,$color3:null){
+    background: $color1; /* Old browsers */
+    @if $color3 {
+        background: -moz-linear-gradient(left,  $color1 0%, $color2 50%,$color3 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  $color1 0%,$color2 50%,$color3 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  $color1 0%,$color2 50%,$color3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    @else{
+        background: -moz-linear-gradient(left,  $color1 0%, $color2 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  $color1 0%,$color2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  $color1 0%,$color2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+}
+// 위에서 아래
+@mixin GradientVertical($color1:#fff,$color2:#000,$color3:null) {
+    background: $color1; /* Old browsers */
+    @if $color3 {
+        background: -moz-linear-gradient(top,  $color1 0%, $color2,$color3 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  $color1 0%,$color2,$color3 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  $color1 0%,$color2,$color3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    @else{
+        background: -moz-linear-gradient(top,  $color1 0%, $color2 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  $color1 0%,$color2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  $color1 0%,$color2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+}
+// 대각선 아래
+@mixin GradienDiagoDown($color1:#fff,$color2:#000,$color3:null) {
+    background: $color1; /* Old browsers */
+    @if $color3 {
+        background: -moz-linear-gradient(-45deg,  $color1 0%, $color2 50%,$color3 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(-45deg,  $color1 0%,$color2 50%,$color3 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(135deg,  $color1 0%,$color2 50%,$color3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    @else{
+        background: -moz-linear-gradient(-45deg,  $color1 0%, $color2 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(-45deg,  $color1 0%,$color2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(135deg,  $color1 0%,$color2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+}
+// 대각선 위
+@mixin GradienDiagoUp($color1:#fff,$color2:#000,$color3:null) {
+    background: $color1; /* Old browsers */
+    @if $color3 {
+        background: -moz-linear-gradient(45deg,  $color1 0%, $color2 50%,$color3 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg,  $color1 0%,$color2 50%,$color3 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg,  $color1 0%,$color2 50%,$color3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    @else{
+        background: -moz-linear-gradient(45deg,  $color1 0%, $color2 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg,  $color1 0%,$color2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg,  $color1 0%,$color2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+}
+// 가운데서 분포
+@mixin GradienRadial($color1:#fff,$color2:#000,$color3:null){
+    background: $color1; /* Old browsers */
+    @if $color3 {
+        background: -moz-radial-gradient(center, ellipse cover,  $color1 0%, $color2 50%,$color3 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover,  $color1 0%,$color2 50%,$color3 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center,  $color1 0%,$color2 50%,$color3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    @else{
+        background: -moz-radial-gradient(center, ellipse cover,  $color1 0%, $color2 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover,  $color1 0%,$color2 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center,  $color1 0%,$color2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+}
+// coin motion
+@mixin coinMotion($time,$delay:0s,$func:ease-in-out,$cnt:infinite,$fill:backwards){
+    animation: coinEffect $time $delay $func $cnt $fill;
+}

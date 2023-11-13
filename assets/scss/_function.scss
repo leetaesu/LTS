@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+// 기준이 되는 사이즈 - chrome 에뮬레이터 기준
+$size-iponePlus : 1.75; // 414 x 736
+$size-iponeX : 1.95; // 375 x 812
+$size-galaxyS5 : 2.05; // 360 x 640
+
+
+// @function rem($px, $calc : $size-iponeX) {
+//     @return #{($px / $calc)*0.1}rem;
+// }
+
+@function tabCalc($length) {
+    $calc : (100 / $length)+"%";
+    @return #{$calc};
+}
+
+
+
+// 연산 , 함수리턴
+@function operation($a,$b){
+    $total : $a + $b;
+
+    @return $total;    
+}
+.operation{
+    border: operation(10,10)+px solid red;
+}
+
+// mixin 과 함께사용
+@mixin space($leftSize,$rightSize){
+    padding-left : operation($leftSize,$rightSize)+px;
+    margin-left : operation($leftSize,$rightSize)+px;
+}
+.operation{
+    @include space(5,5)
+}

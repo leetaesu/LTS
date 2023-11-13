@@ -1,0 +1,364 @@
+@charset "utf-8";
+
+// 토스모션 ???
+%numberStyle{
+    li{
+        position: absolute;
+        left: 0;
+        top: 0;
+        list-style: none;
+        height: .5rem;
+        width: .5rem;
+        background-color:#cfdded;
+        transform-origin: 50% 50%;
+        &:nth-child(1) {
+            transform: rotateX(0)  translateZ(.75rem);
+        }
+        &:nth-child(2) {
+            transform: rotateX(36deg) translateZ(.75rem);
+        }
+        &:nth-child(3) {
+            transform: rotateX(72deg) translateZ(.75rem);
+        }
+        &:nth-child(4) {
+            transform: rotateX(108deg) translateZ(.75rem);
+        }
+        &:nth-child(5) {
+            transform: rotateX(144deg) translateZ(.75rem);
+        }
+        &:nth-child(6) {
+            transform: rotateX(180deg) translateZ(.75rem);
+        }
+        &:nth-child(7) {
+            transform: rotateX(216deg) translateZ(.75rem);
+        }
+        &:nth-child(8) {
+            transform: rotateX(252deg) translateZ(.75rem);
+        }
+        &:nth-child(9) {
+            transform: rotateX(288deg) translateZ(.75rem);
+        }
+        &:nth-child(10) {
+            transform: rotateX(324deg) translateZ(.75rem);
+        }
+        span{
+            display: inline-block;
+            font-size: .28rem;
+            line-height: .28rem;
+            text-align: center;
+            opacity:.3;
+            font-weight: 700;
+            color: #212121;
+            &.on{
+                animation: opacityMotion 2s 0s 1 ease-in-out both;
+            }
+        }
+    }
+}
+.box_motion.number{
+    overflow: hidden;
+    padding: .7rem .2rem 0;
+}
+.number_motion {
+    float: left;
+    position: relative;
+    width: .25rem;
+    height: .3rem;
+    overflow: hidden;
+    margin-left: .1rem;
+    .number_ul{
+        position: absolute;
+        top:0;
+        left: 0;
+        z-index: 11;
+        width: .5rem;
+        height: .5rem;
+        margin:0;
+        transform-style: preserve-3d;
+        animation-iteration-count: 1;
+        &.rolling{
+            animation: rotate1 2s 0s 1 ease-in-out both;
+        }
+        @extend %numberStyle;
+    }
+    .money_motion{
+        position: absolute;
+        top:0;
+        z-index: 11;
+        width: .5rem;
+        height: .5rem;
+        margin:0;
+        transform-style: preserve-3d;
+        animation-iteration-count: 1;
+        &.sec1{
+            left: 0;
+        }
+        &.sec2{
+            left: .2rem;
+        }
+        &.sec3{
+            left: .4rem;
+        }
+        &.sec4{
+            left: .6rem;
+        }
+        &.sec5{
+            left: .8rem;
+        }
+        &.rolling{
+            animation: rotate1 2s 0s 1 ease-in-out both;
+        }
+        @extend %numberStyle;
+    }
+}
+.percent_txt {
+    float: left;
+    position: relative;
+    z-index: 30;
+    line-height: .3rem;
+    font-size: .26rem;
+    font-weight: 700;
+    color: #212121;
+}
+.money_txt{
+    float: left;
+    position: relative;
+    z-index: 30;
+    font-size: .26rem;
+    line-height: .26rem;
+    font-weight: 700;
+    color: #212121;
+}
+.start {
+    width: 300px;
+    margin: 0 auto;
+}
+@keyframes rotate1 {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+@keyframes opacityMotion {
+    0% {
+        opacity:.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+// 카메라 모션
+.camera_motion{
+    position: relative;
+    transform: scale(2);
+    width: .3rem;
+    height: .3rem;
+    margin-left: .02rem;
+    margin: .8rem auto 0;
+    @include bgImg('../../assets/images/etc/ic_camera.png', '../../assets/images/etc/ic_camera_dm.png', .3rem, .3rem);
+    .ic_certify{
+        position: absolute;
+        left: -.02rem;
+        top: -.02rem;
+        z-index: 11;
+        transform: scale(.2);
+        display: none;
+        @include bgImg('../../assets/images/etc/ic_certify.png', '../../assets/images/etc/ic_certify_dm.png', .36rem, .36rem);
+        &.active{
+            animation: camera_certify 2s 0s ease-in-out 1 backwards;
+
+        }
+    }
+    .ic_star_2{
+        position: absolute;
+        left: .14rem;
+        top: .08rem;
+        width: .12rem;
+        height: .12rem;
+        transform: scale(1);
+        z-index: 13;
+        display: block;
+        @include bgImg('../../assets/images/etc/ic_star_2.png', '../../assets/images/etc/ic_star_2_dm.png');
+        &.active{
+            animation: camera_star 1s 0s ease-in 1 backwards;
+        }
+    }
+    .ic_border{
+        position: absolute;
+        left: .09rem;
+        top: .09rem;
+        width: .13rem;
+        height: .13rem;
+        z-index: 10;
+        border: .02rem solid;
+        @include color(border-color,tt3);
+        @include color(background-color,bg6);
+        border-radius: .2rem;
+        &.active{
+            animation: camera_border 2s 0s ease-in-out 1 backwards;
+        }
+    }
+}
+@keyframes camera_star {
+    0%{
+        transform: scale(1);
+    }
+    20%{
+        transform: scale(1.4);
+    }
+    80%{
+        transform: scale(1.4);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes camera_certify {
+    0%{
+        z-index: 10;
+        transform: scale(.2);
+    }
+    10%{
+        z-index: 15;
+        transform: scale(1);
+    }
+    80%{
+        z-index: 15;
+        transform: scale(1);
+    }
+    100%{
+        z-index: 10;
+        transform: scale(.2);
+    }
+}
+@keyframes camera_border {
+    0%{
+        border-width: .02rem;
+        left: .09rem;
+        top: .09rem;
+        width: .13rem;
+        height: .13rem;
+        z-index: 11;
+    }
+    10%{
+        border-width: 0;
+        left:-.01rem;
+        top:-.01rem;
+        width: .32rem;
+        height: .32rem;
+        z-index: 14;
+    }
+    80%{
+        border-width: 0;
+        left:-.01rem;
+        top:-.01rem;
+        width: .32rem;
+        height: .32rem;
+        z-index: 14;
+    }
+    100%{
+        border-width: .02rem;
+        left: .09rem;
+        top: .09rem;
+        width: .13rem;
+        height: .13rem;
+        z-index: 11;
+    }
+}
+
+
+// 미주미이벤트
+.box_motion.america{
+    width: 3rem;
+    height: auto;
+    padding: .1rem 0;
+}
+.graph_box{
+    position: relative;
+    height: .28rem;
+    margin: 0 .16rem;
+    // border: .01px solid;
+    border-radius: .05rem;
+    // @include color(border-color,sec6);
+    box-shadow: 0 0 0 .01rem #CB3073 inset;
+    .bullcon{
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include color(background-color,sec6);
+        width: 1rem;
+        height: .28rem;
+        line-height: .3rem;
+        padding-left: .08rem;
+        border-radius: .05rem 0 0 .05rem;
+        span,strong{
+            @include color(color,tt6);
+            @include font(13);
+            display: inline-block;
+        }
+        span{
+            margin-right: .02rem;
+        }
+        strong{
+            font-weight: 700;
+        }
+    }
+    .bearcon{
+        position: absolute;
+        right: 0;
+        top: 0;
+        @include color(background-color,dec1);
+        width: 1rem;
+        height: .28rem;
+        line-height: .3rem;
+        padding-right: .08rem;
+        border-radius: 0 .05rem .05rem 0;
+        text-align: right;
+        span,strong{
+            @include color(color,tt6);
+            @include font(13);
+            display: inline-block;
+        }
+        span{
+            margin-left: .02rem;
+        }
+        strong{
+            font-weight: 700;
+        }
+    }
+    .graph_con{
+        margin:0 1rem;
+        height: .28rem;
+        @include clearBoth();
+        .bull_sec,.bear_sec{
+            position: relative;
+            height: .28rem;
+            text-indent: -9999px;
+        }
+        .bull_sec{
+            float: left;
+            @include color(background-color,sec6);
+            &.on{
+                &::after{
+                    content:"";
+                    position: absolute;
+                    right: -.16rem;
+                    top: 0;
+                    z-index: 1;
+                    display: block;
+                    @include bgImg('../../assets/images/etc/img_vs.png', '../../assets/images/etc/img_vs_dm.png', .32rem, .28rem);
+                }
+            }
+        }
+        .bear_sec{
+            float: right;
+            @include color(background-color,dec1);
+        }
+    }
+    
+}
+
+

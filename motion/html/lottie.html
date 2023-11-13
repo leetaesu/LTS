@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>lottie json</title>
+  <link href="../assets/images/ico_ts.png" rel="icon">
+  <link rel="stylesheet" href="../assets/css/lib/swiper-bundle.min.css">
+  <link rel="stylesheet" href="../assets/css/default.css"/>
+  <style>
+    .box_lottie{
+        position: relative;
+        float: left;
+        width: 2rem;
+        height: 2rem;
+        margin: .1rem;
+        border-radius: .1rem;
+        background: rgba(15, 85, 164, 0.2);
+    }
+    .test12{
+        position: absolute;
+        top: 0;
+        z-index: 10;
+        width: 2rem;
+        height: 2rem;
+        background: #000;
+        border-radius: .1rem;
+    }
+    .test13{
+        position: absolute;
+        top: 0;
+        z-index: 20;
+    }
+  </style>
+</head>
+<body>
+    <div class="box_lottie"><div class="test1"></div>
+    </div>
+    <div class="box_lottie"><div class="test2"></div>
+    </div>
+    <div class="box_lottie"><div class="test3"></div>
+    </div>
+    <div class="box_lottie"><div class="test4"></div>
+    </div>
+    <div class="box_lottie"><div class="cube"></div>
+    </div>
+    <div class="box_lottie"><div class="test5"></div>
+    </div>
+    <div class="box_lottie"><div class="test6"></div>
+    </div>
+    <div class="box_lottie"><div class="test7"></div>
+    </div>
+    <div class="box_lottie"><div class="test8"></div>
+    </div>
+    <div class="box_lottie"><div class="test9"></div>
+    </div>
+    <div class="box_lottie"><div class="test10"></div>
+    </div>
+    <div class="box_lottie"><div class="test11"></div>
+    </div>
+    <div class="box_lottie"><div class="test12"></div><div class="test13"></div>
+    </div>
+    <div class="box_lottie"><div class="test14"></div>
+    </div>
+    <div class="box_lottie"><div class="test15"></div>
+    </div>
+    <div class="box_lottie"><div class="test16"></div>
+    </div>
+    <div class="box_lottie"><div class="test17"></div>
+    </div>
+    <div class="box_lottie"><div class="test18"></div>
+    </div>
+    <div class="box_lottie"><div class="test19"></div>
+    </div>
+    <div class="box_lottie"><div class="test20"></div>
+    </div>
+    <div class="box_lottie"><div class="test21"></div>
+    </div>
+    <div class="box_lottie"><div class="test22"></div>
+    </div>
+
+    <script src="../assets/js/lib/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/lib/lottie.min.js"></script>
+    <script src="../assets/js/dist/resize.js"></script>
+    <script src="../assets/js/lib/swiper-bundle.min.js"></script>
+    <script src="../assets/js/dist/common.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            loop :true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+        });
+    
+        // 스와이프랑 기존 기능은 동일하게 작성하시면 됩니다.
+        // 스와이프라 루프가 되면서 복제가 되기 때문에, 해당 루프된부분을 전부다 로티객체에 담아주시면 됩니다.
+        var lottieBox=[]    // 로티된부분들 담기
+        function lottieMotion(opt1, opt2) {         //로티 객체
+            return bodymovin.loadAnimation({
+                container: opt1,
+                renderer: 'svg',
+                loop: true,
+                autoplay: false,
+                path: '../assets/json/'+opt2+'.json'
+            });
+        }
+        var cube = lottieMotion($('.cube')[0], 'CubeDrop_360_05');
+        setTimeout(function(){
+            cube.play();
+        }, 2000);
+    
+        var test1 = lottieMotion($('.test1')[0], 'award');
+        var test2 = lottieMotion($('.test2')[0], 'chart');
+        var test3 = lottieMotion($('.test3')[0], 'credit');
+        var test4 = lottieMotion($('.test4')[0], 'raking');
+        var test5 = lottieMotion($('.test5')[0], 'HeartLike');
+        var test6 = lottieMotion($('.test6')[0], 'award2');
+        var test7 = lottieMotion($('.test7')[0], 'celebrate');
+        var test8 = lottieMotion($('.test8')[0], 'LoanCard_01');
+        var test9 = lottieMotion($('.test9')[0], 'LoanCard_02');
+        var test10 = lottieMotion($('.test10')[0], 'LoanCard_03');
+        var test11 = lottieMotion($('.test11')[0], 'LoanCard_04');
+        var test12 = lottieMotion($('.test12')[0], 'KIWMYD_LevelUp');
+        var test13 = lottieMotion($('.test13')[0], 'KIWMYD_Particle');
+        var test14 = lottieMotion($('.test14')[0], 'female_20');
+        var test15 = lottieMotion($('.test15')[0], 'female_30');
+        var test16 = lottieMotion($('.test16')[0], 'female_40');
+        var test17 = lottieMotion($('.test17')[0], 'female_50');
+        var test18 = lottieMotion($('.test18')[0], 'male_20');
+        var test19 = lottieMotion($('.test19')[0], 'male_30');
+        var test20 = lottieMotion($('.test20')[0], 'male_40');
+        var test21 = lottieMotion($('.test21')[0], 'male_50');
+        var test22 = lottieMotion($('.test22')[0], 'Chat');
+        test1.play();
+        test2.play();
+        test3.play();
+        test4.play();
+        test5.play();
+        test6.play();
+        test7.play();
+        test8.play();
+        test9.play();
+        test10.play();
+        test11.play();
+        test12.play();
+        test13.play();
+        test14.play();
+        test15.play();
+        test16.play();
+        test17.play();
+        test18.play();
+        test19.play();
+        test20.play();
+        test21.play();
+        test22.play();
+    </script>
+</body>
+</html>

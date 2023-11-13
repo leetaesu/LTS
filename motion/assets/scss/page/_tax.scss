@@ -1,0 +1,2675 @@
+@charset "utf-8";
+
+
+
+// 컬러 테마 샘플
+.thema_infor{
+    @include clearBoth();
+    margin: .1rem;
+    li{
+        margin:0 .1rem .1rem 0;
+        float: left;
+        border: 1px dashed #000;
+        background: #fff;
+        color: rgb(128, 128, 128);
+        cursor: pointer;
+        &.active{
+            &:nth-child(1){
+                color: #7092be;
+            }
+            &:nth-child(2){
+                color: #30b0ac;
+            }
+            &:nth-child(3){
+                color: #02046c;
+            }
+            &:nth-child(4){
+                background: #000;
+                color: #f5248c;
+            }
+        }
+    }
+    &.pageIn{
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        z-index: 9999;
+        li{
+            float: none;
+            border: none;
+            width: .2rem;
+            height: .2rem;
+            font-size: .11rem;
+            text-align: center;
+            @include textOverflowLine(1);
+            @include GradientVertical(rgb(49, 143, 146),#145a57);
+            color: #fff;
+            border-radius: 50%;
+            margin-bottom: .2rem;
+        }
+    }
+}
+.bg-type li{
+    @include bgImg("../../assets/images/tax/temp/light_cat.jpg","../../assets/images/tax/temp/dark_cat.jpg",2rem,2rem);
+}
+
+// layout 
+%baseWidth{
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+// text hidden
+.blind{
+    position:absolute;
+    width:1px;
+    height:1px;
+    border:0;
+    clip:rect(1px, 1px, 1px, 1px);
+    overflow:hidden;
+    z-index:-1;
+}
+
+
+.swiper_vertical{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .swiper_unit{
+        width: 100%;
+        height: 100%;
+        .swiper-slide{
+            height: auto;
+        }
+        .swiper-pagination-bullets{
+            .swiper-pagination-bullet{
+                opacity: 1;
+                width: .1rem;
+                height: .1rem;
+                background: #d6d6d6;
+            }
+            .swiper-pagination-bullet-active{
+                opacity: 1;
+                width: .1rem;
+                height: .1rem;
+                background: #32336b;
+            }
+        }
+    }    
+}
+
+.wrap{
+    width: 100%;
+    height: 100%;
+    &.intro{
+        position: relative;
+        .sec1{
+            padding-bottom: .3rem;
+            background: #6d6db9;
+            .sec1_txtgroup{
+                padding: .37rem 0 0;
+                text-align: center;
+                p{
+                    &:nth-child(1){
+                        color: rgba(#fff,.7);
+                        font-size: .18rem;
+                        font-weight: 500;
+                        letter-spacing: -1px;
+                        margin-bottom: .04rem;
+                    }
+                    &:nth-child(2){
+                        color: #fff;
+                        font-size: .32rem;
+                        font-weight: bold;
+                        line-height: 1.31;
+                    }
+                    &:nth-child(3){
+                        color: rgba(#fff,.7);
+                        font-size: .18rem;
+                        font-weight: 500;
+                        letter-spacing: -1px;
+                    }
+                }
+            }
+            .sec1_box1{
+                position: relative;
+                margin: .3rem auto .2rem;
+                width: 2.75rem;
+                height: 2.75rem;
+                background: url('../../assets/images/tax/intro/sec1_box.png') no-repeat 0 0;
+                background-size: 100% 100%;
+                h4{
+                    position: absolute;
+                    left: .8rem;
+                    top: .24rem;
+                    z-index: 10;
+                    text-indent: -9999px;
+                    width: .47rem;
+                    height: .18rem;
+                    background: url('../../assets/images/tax/intro/sec1_txt1.png') no-repeat 0 0;
+                    background-size: 100% 100%;
+                }
+                .sec1_txtMotion{
+                    position: absolute;
+                    left: .78rem;
+                    top: .35rem;
+                    z-index: 10;
+                    @include clearBoth();
+                    p{
+                        float: left;
+                        &:nth-child(1){
+                            text-align: right;
+                            width: .9rem;
+                            font-size: .38rem;
+                            font-weight: bold;
+                            color: #333;
+                            letter-spacing: -.025rem;
+                        }
+                        &:nth-child(2){
+                            padding: .25rem 0 0 .04rem;
+                            font-size: .14rem;
+                            font-weight: 500;
+                            color: #6d6d6d;
+                        }
+                    }
+                }
+                .sec1_handMotion{
+                    position: absolute;
+                    left: .38rem;
+                    bottom: .4rem;
+                    z-index: 10;
+                    width: 1.96rem;
+                    height: 1.37rem;
+                    border-radius: .08rem;
+                    background: rgba(#fff,.9);
+                    box-shadow: 0 .03rem .06rem 0 rgba(0,0,0,.16);
+                    .firstBox{
+                        text-align: center;
+                        .ico_kiwoom{
+                            margin: .13rem auto .09rem;
+                            width: .2rem;
+                            height: .2rem;
+                            background: url('../../assets/images/tax/intro/sec1_logo.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                            text-indent: -9999px;;
+                        }
+                        .firstTxt{
+                            line-height: 1.28;
+                            font-size: .18rem;
+                            font-weight: 600;
+                            color: #333;
+                        }
+                        .firstBtn{
+                            margin: .09rem auto 0;
+                            width: .9rem;
+                            height: .28rem;
+                            background: url('../../assets/images/tax/intro/sec1_btn1.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                            text-indent: -9999px;
+                            &.on{
+                                background-image: url('../../assets/images/tax/intro/sec1_btn2.png');
+                                animation: BtnEffect2 1s .5s ease-in 1 forwards;
+                            }
+                        }
+                        .firstCheck{
+                            position: absolute;
+                            left: .85rem;
+                            bottom: .1rem;
+                            width: .3rem;
+                            height: .3rem;
+                            background: url('../../assets/images/tax/intro/sec1_btn_check.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                            text-indent: -9999px;
+                        }
+                    }
+                    .secondBox{
+                        display: none;
+                        .secondTxt1{
+                            opacity: 0;
+                            position: absolute;
+                            left: .4rem;
+                            bottom: .45rem;
+                            width: 1.13rem;
+                            height: .37rem;
+                            background: url('../../assets/images/tax/intro/sec1_txt2.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                            text-indent: -9999px;
+                            &.on{
+                                animation: textEffect1 .5s .5s ease-in 1 forwards;
+                            }
+                        }
+                        .secondTxt2{
+                            opacity: 0;
+                            position: absolute;
+                            left: .4rem;
+                            bottom: -.15rem;
+                            width: 1.24rem;
+                            height: .37rem;
+                            background: url('../../assets/images/tax/intro/sec1_txt3.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                            text-indent: -9999px;
+                            &.on{
+                                animation: textEffect2 .5s 1s ease-in 1 forwards;
+                            }
+                        }
+                    }
+                    .icoHand{
+                        opacity: 0;
+                        position: absolute;
+                        width: 1.15rem;
+                        height: .9rem;
+                        background: url('../../assets/images/tax/intro/sec1_hand.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        text-indent: -9999px;
+                        &.on{
+                            animation: handEffect 1s ease-in 1 forwards;
+                        }
+
+                    }
+                }
+            }
+            .sec1_btn{
+                padding: 0 .3rem;
+                a{
+                    display: block;
+                    height: .48rem;
+                    line-height: .48rem;
+                    background: none;
+                    border: 1px solid #fff;
+                    border-radius: .24rem;
+                    color: #fff;
+                    font-size: .16rem;
+                    font-weight: normal;
+                    text-align: center;
+                }
+                &.on{
+                    a{
+                        animation: BtnEffect1 2s ease-in-out 1 forwards;
+                    }
+                }
+            }
+        }
+        .sec2{
+            position: relative;
+            background: #fff;
+            padding: 0 0 0;
+            margin-bottom: .25rem;
+            margin-top: -.01rem;
+            .roundBox_after{
+                position: relative;
+                width: 100%;
+                background: #6d6db9;
+                height: .4rem;
+                &::after{
+                    content:"";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    background: #fff;
+                    height: .41rem;
+                    border-radius: 0 .3rem 0 0;
+                }
+            }
+            .sec2_txtgroup{
+                margin-bottom: .1rem;
+                padding: 0 .3rem;
+                p{
+                    &:nth-child(1){
+                        font-size: .26rem;
+                        color: #333;
+                        letter-spacing: -.013rem;
+                        strong{
+                            font-size: .26rem;
+                            font-weight: bold;
+                        }
+                    }
+                    &:nth-child(2){
+                        font-size: .13rem;
+                        color: #333;
+                        span{
+                            font-size: .13rem;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+            .sec2_txtgroup2{
+                background: #fafafa;
+                color: #6d6d6d;
+                font-size: .13rem;
+                padding: .15rem;
+                margin: 0 .3rem .4rem;
+                span{
+                    font-size: .13rem;
+                    font-weight: 600;
+                    color: #b43a6b;
+                }
+            }
+            .sec2_txtgroup3{
+                padding: 0 .3rem;
+                p{
+                    &:nth-child(1){
+                        font-size: .26rem;
+                        color: #333;
+                        letter-spacing: -.013rem;
+                        line-height: .29rem;
+                        strong{
+                            font-size: .26rem;
+                            font-weight: bold;
+                        }
+                    }
+                    &:nth-child(2){
+                        font-size: .13rem;
+                        color: #666666;
+                        margin-top: .05rem;
+                        span{
+                            font-size: .13rem;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            .figure_box{
+                position: relative;
+                max-width: 640px;
+                margin: 0 auto;
+                padding: .3rem .3rem 0;
+                @include clearBoth();
+                // overflow: hidden;
+                .figure_mask1{
+                    position: absolute;
+                    left: .52rem;
+                    bottom: -.13rem;
+                    width: .67rem;
+                    height: .3rem;
+                    z-index: 15;
+                    text-indent: -9999px;
+                    background: url('../../assets/images/tax/intro/figure_box_mask2.png') no-repeat 0 0;
+                    background-size: 100% 100%;
+                }
+                .figure_mask2{
+                    position: absolute;
+                    right: .86rem;
+                    bottom: -.13rem;
+                    width: .67rem;
+                    height: .3rem;
+                    z-index: 15;
+                    text-indent: -9999px;
+                    background: url('../../assets/images/tax/intro/figure_box_mask2.png') no-repeat 0 0;
+                    background-size: 100% 100%;
+                }
+                .deduct_fail{
+                    position: relative;
+                    float: left;
+                    width: 1.45rem;
+                    height: 1.65rem;
+                    overflow: hidden;
+                    .two_figure{
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        z-index: 10;
+                        width: .9rem;
+                        height: 1.11rem;
+                        background: url('../../assets/images/tax/intro/figure_box1_off.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        .incon{
+                            &::after{
+                                display: block;
+                                content:"";
+                                position: absolute;
+                                left: .9rem;
+                                bottom: 0;
+                                height: 17%;
+                                z-index: 5;
+                                width: .45rem;
+                                border-top: 1px dashed #999999;
+                            }
+                            &.on{
+                                &::before{
+                                    display: block;
+                                    content:"";
+                                    position: absolute;
+                                    left: .22rem;
+                                    bottom: -1.3rem;
+                                    width: .67rem;
+                                    z-index: 10;
+                                    height: 1.11rem;
+                                    background: url('../../assets/images/tax/intro/figure_box1_on.png') no-repeat 0 0;
+                                    background-size: 100% 100%;
+                                    animation: two_figure .5s ease-in-out 1 forwards;
+                                }
+                                &::after{
+                                    animation: two_figure_line .5s ease-in-out 1 forwards;
+                                }
+                            }
+                        }
+                        .red_figure.on{
+                            position: absolute;
+                            left: .22rem;
+                            top: -.65rem;
+                            z-index: 10;
+                            height: .57rem;
+                            width: .67rem;
+                            opacity: 0;
+                            background: url('../../assets/images/tax/intro/figure_box_red.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                            animation: red_figure .5s .75s ease-in-out 1 forwards;
+                        }
+                    }
+                    .fail_txtType1{
+                        position: absolute;
+                        left: .1rem;
+                        top: -.1rem;
+                        opacity: 0;
+                        display: inline-block;
+                        background: #888;
+                        border-radius: .11rem;
+                        padding: .03rem .08rem;
+                        color: #fff;
+                        font-size: .12rem;
+                        font-weight: normal;
+                        &::after{
+                            content:"";
+                            display: block;
+                            background: #888;
+                            position: absolute;
+                            left: .4rem;
+                            bottom: -.05rem;
+                            transform: rotate(45deg);
+                            z-index: 10;
+                            width: .1rem;
+                            height: .1rem;
+                        }
+                        &.on{
+                            animation: txtType1 .5s ease-in-out 1 forwards;
+                        }
+                    }
+                    .fail_txtType2{
+                        opacity: 0;
+                        position: absolute;
+                        right: .05rem;
+                        top: .35rem;
+                        font-size: .12rem;
+                        color: #b43a6b;
+                        font-weight: bold;
+                        &.on{
+                            animation: txtType2 .5s ease-in-out 1 forwards;
+                        }
+                    }
+                    .fail_txtType3{
+                        position: absolute;
+                        right: .05rem;
+                        bottom: .4rem;
+                        font-size: .12rem;
+                        line-height: 1.33;
+                        font-weight: bold;
+                        color: #333;
+                        span{
+                            font-weight: bold;
+                            font-size: .12rem;
+                            color: #333;
+                        }
+                    }
+                }
+                .deduct_sucess{
+                    position: relative;
+                    float: right;
+                    width: 1.45rem;
+                    height: 1.65rem;
+                    overflow: hidden;
+                    .one_figure{
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        z-index: 10;
+                        height: 1.31rem;
+                        width: .67rem;
+                        .incon{
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            z-index: 10;
+                            width: .9rem;
+                            height: 1.43rem;
+                            background: url('../../assets/images/tax/intro/figure_box2_off.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                            &::after{
+                                display: block;
+                                content:"";
+                                position: absolute;
+                                left: .9rem;
+                                bottom: 13.5%;
+                                z-index: 5;
+                                width: .45rem;
+                                border-top: 1px dashed #999999;
+                            }
+                            &.on{
+                                &::before{
+                                    display: block;
+                                    content:"";
+                                    position: absolute;
+                                    left: .22rem;
+                                    bottom: -1.3rem;
+                                    width: .67rem;
+                                    z-index: 10;
+                                    height: 1.43rem;
+                                    background: url('../../assets/images/tax/intro/figure_box2_on.png') no-repeat 0 0;
+                                    background-size: 100% 100%;
+                                    animation: one_figure 1.5s ease-in-out 1 forwards;
+                                }
+                                &::after{
+                                    animation: one_figure_line 1.5s 0.1s ease-in-out 1 forwards;
+                                }
+                            }
+                        }
+                    }
+                    .fail_txtType1{
+                        opacity: 0;
+                        position: absolute;
+                        left: .1rem;
+                        top: 0;
+                        display: inline-block;
+                        background: #32336b;
+                        border-radius: .11rem;
+                        padding: .03rem .08rem .04rem;
+                        color: #fff;
+                        font-size: .12rem;
+                        font-weight: normal;
+                        &::after{
+                            content:"";
+                            display: block;
+                            background: #32336b;
+                            position: absolute;
+                            left: .4rem;
+                            bottom: -.05rem;
+                            transform: rotate(45deg);
+                            z-index: 10;
+                            width: .1rem;
+                            height: .1rem;
+                        }
+                        &.on{
+                            animation: txtType1 .5s ease-in-out 1 forwards;
+                        }
+                    }
+                    .fail_txtType3{
+                        position: absolute;
+                        right: .08rem;
+                        bottom: .72rem;
+                        font-size: .12rem;
+                        line-height: 1.33;
+                        font-weight: bold;
+                        color: #333;
+                        text-align: left;
+                        width: .4rem;
+                        span{
+                            font-size: .12rem;
+                            font-weight: bold;
+                            color: #333;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+        .sec3{
+            position: relative;
+            background: #f2f2f3;
+            padding: 0 0 .3rem;
+            .roundBox_after{
+                position: relative;
+                width: 100%;
+                background: #fff;
+                height: .4rem;
+                &::after{
+                    content:"";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    background: #f2f2f3;
+                    height: .4rem;
+                    border-radius: 0 .3rem 0 0;
+                }
+            }
+            .sec3_txtgroup{
+                padding: 0 .3rem;
+                p{
+                    &:nth-child(1){
+                        margin: .11rem 0 .05rem;
+                        font-size: .26rem;
+                        color: #333;
+                        letter-spacing: -.01rem;
+                        line-height: .29rem;
+                        strong{
+                            font-size: .26rem;
+                            font-weight: bold;
+                        }
+                    }
+                    &:nth-child(2){
+                        font-size: .13rem;
+                        color: #6d6d6d;
+                        span{
+                            font-size: .13rem;
+                            font-weight: bold;
+                            color: #b43a6b;
+                        }
+                    }
+                }
+            }
+            .sec3_group1{
+                position: relative;
+                background: #ffffff;
+                border-radius: .1rem;
+                border: 2px solid #6d6db9;
+                margin: .12rem .3rem 0;
+                overflow: hidden;
+                &::after{
+                    content:"";
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 0;
+                    width: 0.01rem;
+                    height: 100%;
+                    background: #d8d8d8;
+                }
+                .sec3_ico_plus{
+                    display: none;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 20;
+                    bottom: .3rem;
+                    width: .2rem;
+                    height: .2rem;
+                    background: url('../../assets/images/tax/icon/ico_moreplus.png') no-repeat 0 0;
+                    background-size: 100% 100%;
+                }
+                .inGroup{
+                    float: left;
+                    width: 50%;
+                    text-align: center;
+                    padding: .18rem .09rem;
+                    box-sizing: border-box;
+                    h3{
+                        opacity: 0;
+                        position: relative;
+                        display: inline-block;
+                        background: #6d6db9;
+                        color: #ffffff;
+                        font-weight: 500;
+                        font-size: .14rem;
+                        border-radius: .12rem;
+                        padding: .03rem .1rem;
+                        margin-bottom: .1rem;
+                        top: -.1rem;
+                    }
+                    h4{
+                        opacity: 0;
+                        position: relative;
+                        letter-spacing: -.01rem;
+                        font-size: .18rem;
+                        font-weight: bold;
+                        color: #333;
+                        margin-bottom: .1rem;
+                        top: -.1rem;
+                    }
+                    .check_text{
+                        opacity: 0;
+                        display: inline-block;
+                        position: relative;
+                        top: -.1rem;
+                        font-size: .14rem;
+                        font-weight: 500;
+                        line-height: 1.29;
+                        color: #666;
+                        text-align: center;
+                        padding: 0 0 0 .07rem;
+                        &::before{
+                            display: block;
+                            content:"";
+                            position: absolute;
+                            left: -.05rem;
+                            top: .05rem;
+                            width: .1rem;
+                            height: .07rem;
+                            background: url('../../assets/images/tax/icon/ico_check.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                        }
+                    }
+                    .infor_text{
+                        opacity: 0;
+                        position: relative;
+                        top: -.1rem;
+                        font-size: .14rem;
+                        font-weight: 500;
+                        line-height: 1.29;
+                        color: #6d6db9;
+                    }
+                    .ico_figure_box{
+                        opacity: 0;
+                        position: relative;
+                        height: 1.04rem;
+                        top: -.1rem;
+                        margin-top: .08rem;
+                        .ico_figure1{
+                            position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: .85rem;
+                            height: .85rem;
+                            background: url('../../assets/images/tax/icon/ico_figure1.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                        }
+                        .ico_figure2{
+                            position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: .85rem;
+                            height: .85rem;
+                            background: url('../../assets/images/tax/icon/ico_figure2.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                        }
+                    }
+                    &.on{
+                        h3{
+                            animation: sec3Motion .5s 0s ease-in-out 1 forwards;
+                        }
+                        h4{
+                            animation: sec3Motion .5s .5s ease-in-out 1 forwards;
+                        }
+                        .check_text{
+                            animation: sec3Motion .5s .8s ease-in-out 1 forwards;
+                        }
+                        .ico_figure_box{
+                            animation: sec3Motion .5s 1.5s ease-in-out 1 forwards;
+                        }
+                        .infor_text{
+                            animation: sec3Motion .5s 2s ease-in-out 1 forwards;
+                        }
+                    }
+                }
+            }
+            .sec3_group2{
+                border: 1px dashed #dddddd;
+                border-radius: .12rem;
+                text-align: center;
+                padding: .15rem 0;
+                margin: .15rem .3rem 0;
+                p{
+                    font-size: .2rem;
+                    color: #333333;
+                    font-weight: 500;
+                    strong{
+                        position: relative;
+                        span{
+                            position: relative;
+                            z-index: 10;
+                            font-weight: bold;
+                            font-size: .2rem;
+                            color: #6d6db9;
+
+                        }
+                        &::after{
+                            content:"";
+                            display: block;
+                            position: absolute;
+                            bottom: -.02rem;
+                            left: 0;
+                            width: 100%;
+                            height: .07rem;
+                            background: #e1e1f5;
+                        }
+                    }
+                }
+            }
+        }
+        .sec4{
+            position: relative;
+            background: #fff;
+            padding: 0 0 .4rem;
+            .roundBox_after{
+                position: relative;
+                width: 100%;
+                background: #f2f2f3;
+                height: .4rem;
+                &::after{
+                    content:"";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    background: #fff;
+                    height: .4rem;
+                    border-radius: 0 .3rem 0 0;
+                }
+            }
+            .sec4_txtgroup{
+                padding: 0 .3rem;
+                p{
+                    &:nth-child(1){
+                        padding: .05rem 0 .1rem;
+                        font-size: .26rem;
+                        color: #333;
+                        letter-spacing: -.013rem;
+                        line-height: .29rem;
+                        strong{
+                            font-size: .26rem;
+                            font-weight: bold;
+                        }
+                    }
+                    &:nth-child(2){
+                        font-size: .13rem;
+                        color: #6d6d6d;
+                    }
+                }
+            }
+            .sec4_figure_box{
+                max-width: 3rem;
+                margin: .1rem auto .2rem;
+                height: 2.24rem;
+                .sec4_group1{
+                    position: relative;
+                    height: 2.24rem;
+                    z-index: 12;
+                    .base_figure{
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                        z-index:10;
+                        width: 1.42rem;
+                        height: 1.42rem;
+                        background: url('../../assets/images/tax/intro/figure_group1_1.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                    }
+                    .figure_1_1{
+                        position: absolute;
+                        left: 40%;
+                        top: 40%;
+                        z-index: 9;
+                        width: .81rem;
+                        height: .81rem;
+                        background: url('../../assets/images/tax/intro/figure_group1_2.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion1 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                    .figure_1_2{
+                        position: absolute;
+                        right: 40%;
+                        bottom: 40%;
+                        z-index: 9;
+                        width: .84rem;
+                        height: .84rem;
+                        background: url('../../assets/images/tax/intro/figure_group1_3.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion2 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                    .figure_1_3{
+                        position: absolute;
+                        left: 40%;
+                        bottom: 40%;
+                        z-index: 9;
+                        width: .93rem;
+                        height: .93rem;
+                        background: url('../../assets/images/tax/intro/figure_group1_4.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion3 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                }
+                .sec4_group2{
+                    position: relative;
+                    height: 2.24rem;
+                    z-index: 10;
+                    display: none;
+                    .base_figure{
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                        z-index:10;
+                        width: 1.42rem;
+                        height: 1.42rem;
+                        background: url('../../assets/images/tax/intro/figure_group2_1.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                    }
+                    .figure_2_1{
+                        position: absolute;
+                        left: 40%;
+                        top: 40%;
+                        z-index: 9;
+                        width: .81rem;
+                        height: .81rem;
+                        background: url('../../assets/images/tax/intro/figure_group2_2.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion1_two 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                    .figure_2_2{
+                        position: absolute;
+                        left: 40%;
+                        top: 40%;
+                        z-index: 9;
+                        width: .64rem;
+                        height: .63rem;
+                        background: url('../../assets/images/tax/intro/figure_group2_3.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion2_two 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                    .figure_2_3{
+                        position: absolute;
+                        left: 40%;
+                        top: 40%;
+                        z-index: 9;
+                        width: .69rem;
+                        height: .69rem;
+                        background: url('../../assets/images/tax/intro/figure_group2_4.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion3_two 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                    .figure_2_4{
+                        position: absolute;
+                        right: 40%;
+                        bottom: 40%;
+                        z-index: 9;
+                        width: .74rem;
+                        height: .73rem;
+                        background: url('../../assets/images/tax/intro/figure_group2_5.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion2 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                    .figure_2_5{
+                        position: absolute;
+                        left: 40%;
+                        top: 40%;
+                        z-index: 9;
+                        width: .73rem;
+                        height: .72rem;
+                        background: url('../../assets/images/tax/intro/figure_group2_6.png') no-repeat 0 0;
+                        background-size: 100% 100%;
+                        &.on{
+                            animation: figureMotion3 4.5s 0s ease-in-out 1 forwards;
+                        }
+                    }
+                }
+            }
+            .sec4_txtgroup2{
+                margin-bottom: .2rem;
+                padding: 0 .3rem;
+                p{
+                    position: relative;
+                    font-size: .13rem;  
+                    font-weight: 500;
+                    color: #333;
+                    padding: 0 0 .02rem .17rem;
+                    &::before{
+                        position: absolute;
+                        left: 0;
+                        top: .04rem;
+                        content:"";
+                        display: block;
+                        width: .12rem;
+                        height: .12rem;
+                        border-radius: 50%;
+                    }
+                    &:nth-child(1){
+                        &::before{
+                            background: #6d6db9;
+                        }
+                    }
+                    &:nth-child(2){
+                        &::before{
+                            background: #17b0bb;
+                        }
+                    }
+                    &:nth-child(3){
+                        padding-bottom: 0;
+                        &::before{
+                            background: #bd527e;
+                        }
+                    }
+                }
+            }
+            .sec4_txtgroup2_1{
+                display: none;
+                margin-bottom: .2rem;
+                padding: 0 .3rem;
+                @include clearBoth();
+                p{
+                    float: left;
+                    position: relative;
+                    font-size: .13rem;  
+                    font-weight: 500;
+                    color: #333;
+                    width: 50%;
+                    padding: 0 0 .02rem .17rem;
+                    box-sizing: border-box;
+                    &::before{
+                        position: absolute;
+                        left: 0;
+                        top: .04rem;
+                        content:"";
+                        display: block;
+                        width: .12rem;
+                        height: .12rem;
+                        border-radius: 50%;
+                    }
+                    &:nth-child(1){
+                        &::before{
+                            background: #6060bf;
+                        }
+                    }
+                    &:nth-child(2){
+                        &::before{
+                            background: #169b6c;
+                        }
+                    }
+                    &:nth-child(3){
+                        &::before{
+                            background: #bd527e;
+                        }
+                    }
+                    &:nth-child(4){
+                        &::before{
+                            background: #2269a8;
+                        }
+                    }
+                    &:nth-child(5){
+                        &::before{
+                            background: #3f9db1;
+                        }
+                    }
+                }
+            }
+            .sec4_txtgroup3{
+                background: #fafafa;
+                padding: .15rem;
+                margin: 0 .3rem;
+                p{
+                    font-size: .13rem;
+                    font-weight: 500;
+                    color: #6d6d6d;
+                    line-height: 1.39;
+                    strong{
+                        font-weight: bold;
+                        font-size: .13rem;
+                        color: #bd527e;
+                        span{
+                            font-weight: bold;
+                            font-size: .13rem;
+                        }
+                    }
+                }
+            }
+
+        }
+        .sec5{
+            position: relative;
+            background: #f2f2f3;
+            .roundBox_after{
+                position: relative;
+                width: 100%;
+                background: #fff;
+                height: .4rem;
+                &::after{
+                    content:"";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    background: #f2f2f3;
+                    height: .4rem;
+                    border-radius: 0 .3rem 0 0;
+                }
+            }
+            ul{
+                padding: 0 .3rem .9rem;
+                li{
+                    position: relative;
+                    border-radius: .04rem;
+                    padding: .2rem;
+                    margin-bottom: .2rem;
+                    &:nth-child(1){
+                        background: #6d6db9;
+                        &::after{
+                            display: block;
+                            content:"";
+                            position: absolute;
+                            right: .15rem;
+                            top: .23rem;
+                            width: .9rem;
+                            height: .9rem;
+                            background: url('../../assets/images/tax/icon/img_banner1.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                        }
+                        h3{
+                            display: inline-block;
+                            color: #fff;
+                            background: #8396ff;
+                            border-radius: .1rem;
+                            font-size: .10rem;
+                            padding: .04rem .1rem;
+                            letter-spacing: .01rem;
+                        }
+                        h4{
+                            font-size: .16rem;
+                            font-weight: 500;
+                            color: #fff;
+                            line-height: 1.38;
+                            letter-spacing: -.01rem;
+                            margin: .04rem 0 .07rem;
+                        }
+                        >p{
+                            font-size: .12rem;
+                            color: #bdbae3;
+                        }
+                    }
+                    &:nth-child(2){
+                        background: #e1e3f6;
+                        &::after{
+                            display: block;
+                            content:"";
+                            position: absolute;
+                            right: .15rem;
+                            top: .23rem;
+                            width: .9rem;
+                            height: .9rem;
+                            background: url('../../assets/images/tax/icon/img_banner2.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                        }
+                        h3{
+                            display: inline-block;
+                            color: #fff;
+                            background: #6d6db9;
+                            border-radius: .1rem;
+                            font-size: .10rem;
+                            padding: .04rem .1rem;
+                            letter-spacing: 0;
+                        }
+                        h4{
+                            font-size: .16rem;
+                            font-weight: 500;
+                            color: #333333;
+                            line-height: 1.38;
+                            letter-spacing: -.01rem;
+                            margin: .04rem 0 .05rem;
+                        }
+                        p{
+                            a{
+                                position: relative;
+                                font-size: .12rem;
+                                color: #333;
+                                display: inline-block;
+                                &::after{
+                                    content:"";
+                                    display: block;
+                                    position: absolute;
+                                    right: -0.12rem;
+                                    top: 0.03rem;
+                                    width: .1rem;
+                                    height: .11rem;
+                                    background: url('../../assets/images/tax/icon/ico_arrow_1.png') no-repeat 0 0;
+                                    background-size: 100% 100%;
+                                }
+                            }
+                        }
+                    }
+                    &:nth-child(3){
+                        background: #dee6f2;
+                        padding: .18rem .2rem .2rem;
+                        &::after{
+                            display: block;
+                            content:"";
+                            position: absolute;
+                            right: .02rem;
+                            top: -.16rem;
+                            width: 1.23rem;
+                            height: .67rem;
+                            background: url('../../assets/images/tax/icon/img_banner3.png') no-repeat 0 0;
+                            background-size: 100% 100%;
+                        }
+                        h4{
+                            font-size: .16rem;
+                            font-weight: 500;
+                            color: #333333;
+                            line-height: 1.38;
+                            margin: 0 0 .07rem;
+                            strong{
+                                font-size: .16rem;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    // 다음스탭
+    .ico_step{
+        display: block;
+        position: fixed;
+        right: .05rem;
+        bottom: .15rem;
+        z-index: 400;
+        width: .24rem;
+        height: .24rem;
+        text-indent: -9999px;
+        background: url("../../assets/images/tax/intro/ic_arrow_dacoration.png") no-repeat 0 0;
+        background-size:100% 100%;
+        animation: nextStep .5s ease-in-out infinite alternate;
+
+    }
+
+
+    //guide
+    &.guide{
+        position: relative;
+        .section {
+            position: relative;
+            padding: .45rem .3rem 0;
+            .txt_box {
+                .tit {
+                    color: #333;
+                    font-size: .26rem;
+                    line-height: .28rem;
+                    letter-spacing: -1.3px;
+                    strong {
+                        font-size: inherit;
+                        font-weight: 700;
+                    }
+                }
+                .txt {
+                    color: #666;
+                    font-size: .13rem;
+                    line-height: .18rem;
+                    letter-spacing: -0.33px;
+                    margin-top: .05rem;
+                    span {
+                        color: #333;
+                        font-size: inherit;
+                        font-weight: 600;
+                    }
+                }
+                
+            }
+
+            &.sec1 {
+                padding-top: 0;
+                padding-bottom: .3rem;
+                background-color: #ebebfa; 
+                box-shadow: 0 -.5rem .1rem 0 rgba(0, 0, 0, .12); 
+                &::after {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    top: -.45rem;
+                    left: 0;
+                    width: 100%;
+                    height: .45rem;
+                    border-radius: 0 .3rem 0 0;
+                    background-color: #ebebfa;
+                }
+
+                .list_cont {
+                    margin-top: .3rem;
+                    ul {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        width: calc(100% + .08rem);
+                        li {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: #fff;
+                            border-radius: .1rem;
+                            flex: 1 0 1.46rem;
+                            height: 1.52rem;
+                            text-align: center;
+                            margin-right: .08rem;
+                            margin-bottom: .08rem;
+                            .cont_wrap {
+                                .img_box {
+                                    .icon {
+                                        display: block;
+                                        width: 100%;
+                                        height: .45rem;
+                                        &.item1 {
+                                            background: url('../../assets/images/tax/icon/icon_item_01.png') no-repeat center;
+                                            background-size: contain;
+                                        }
+                                        &.item2 {
+                                            background: url('../../assets/images/tax/icon/icon_item_02.png') no-repeat center;
+                                            background-size: contain;
+                                        }
+                                        &.item3 {
+                                            background: url('../../assets/images/tax/icon/icon_item_03.png') no-repeat center;
+                                            background-size: contain;
+                                        }
+                                        &.item4 {
+                                            background: url('../../assets/images/tax/icon/icon_item_04.png') no-repeat center;
+                                            background-size: contain;
+                                        }
+                                        &.item5 {
+                                            background: url('../../assets/images/tax/icon/icon_item_05.png') no-repeat center;
+                                            background-size: contain;
+                                        }
+                                    }
+                                }
+                                .tit {
+                                    padding: .08rem 0;
+                                    font-size: .14rem;
+                                    font-weight: 700;
+                                    color: #333;
+                                    letter-spacing: -0.35px;
+                                }
+                                .txt {
+                                    font-size: .12rem;
+                                    color: #666;
+                                    letter-spacing: -0.3px;
+                                    text-align: center;
+                                }
+                            }
+                            &:last-child {
+                                flex: 0 100%;
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            &.sec2 {
+                height: 4.28rem;
+
+                .tab_wrap {
+                    margin-bottom: .1rem;
+                    &.tab_scroll {
+                        width: calc(100% + .3rem);
+                        margin-left: 0;
+                    }
+                    .tab_list {
+                        padding: .45rem 0 .14rem;
+                    }
+                }
+                .que {
+                    font-size: .16rem;
+                    font-weight: 700;
+                    color: #333;
+                    span {
+                        font-size: inherit;
+                        font-weight: inherit;
+                        color: #6d6db9;
+                    }
+                }
+                .txt_bg {
+                    margin: .14rem 0;
+                    background: #fafafa;
+                    padding: .2rem;
+                    color: #666;
+                    line-height: .2rem;
+                    letter-spacing: -0.35px;
+                }
+                .btn_wrap {
+                    text-align: center;
+                    .btn_link {
+                        display: inline-block;
+                        font-size: .12rem;
+                        color: #666;
+                        background: url('../../assets/images/tax/icon/ico_arrow_1.png') no-repeat right .05rem;
+                        background-size: .1rem .1rem;
+                        padding-right: .14rem;
+                    }
+                }
+            }
+            &.sec3 {
+                background: #ebebfa;
+                padding-bottom: .8rem;
+                
+                .tab_wrap {
+                    margin-top: .3rem;
+                    &.tab_menu {
+                        .tab_list {
+                            display: flex;
+                            height: .38rem;
+                            align-items: center;
+                            border-radius: .04rem;
+                            border: 1px solid #999;
+                            background: #fafafa;
+                            li {
+                                width: 100%;
+                                text-align: center;
+                                .btn_tablist_item {
+                                    width: 100%;
+                                    height: .38rem;
+                                    font-size: .12rem;
+                                    color: #666;
+                                }
+                                &.on {
+                                    .btn_tablist_item {
+                                        border: 1px solid #212266;
+                                        border-radius: .04rem;
+                                        background: #fff;
+                                        color: #212266;
+                                        font-weight: 700;
+
+                                    }
+                                }
+                                &:first-child {
+                                    &.on {
+                                        .btn_tablist_item {
+                                            margin-left: -.02rem;
+                                        }
+                                    }
+                                }
+                                &:last-child {
+                                    &.on {
+                                        .btn_tablist_item {
+                                            margin-right: -.02rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .video_wrap {
+                    width:calc(100% + .6rem);
+                    margin-left: -.3rem;
+            
+                    .video_swiper {
+                        overflow:hidden;
+
+                        .swiper-wrapper {
+                            .swiper-slide {
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                padding: 0 .3rem;
+
+                                .video_item {
+                                    width: 49%;
+                                    margin-top: .16rem;
+                                }
+                            }
+                        }
+
+                        .swiper-pagination {
+                            bottom: .40rem;
+                            .swiper-pagination-bullet-active {
+                                background: #6d6db9 !important;
+                            }
+                            .swiper-pagination-bullet {
+                                width: .06rem;
+                                height: .06rem;
+                                margin: 0 .02rem;
+                                background: #ccc;
+                                opacity: 1;
+                            }
+
+                        }
+                    }
+                       
+                    .thumb_box {
+                        overflow:hidden;
+                        position:relative;
+                        width:100%;
+                        height:.83rem;
+                        border-radius:.04rem;
+                        background-color:#838383;
+            
+                        .time_status_box {
+                            position:absolute;
+                            bottom:.05rem;
+                            right:.05rem;
+                            padding:0 .05rem .01rem;
+                            
+                            box-sizing:border-box;
+                            color: #fff;
+            
+                            &::before {
+                                content:'';
+                                position:absolute;
+                                top:0;
+                                left:0;
+                                bottom:0;
+                                right:0;
+                                border-radius:.02rem;
+                                background-color:#000;
+                            }
+            
+                            .time_status {
+                                display:block;
+                                position:relative;
+                                font-size: .1rem;
+                            }
+                        }
+                    }
+            
+                    .info_box {
+                        margin-top:.08rem;
+            
+                        strong {
+                            overflow:hidden;
+                            display:block;
+                            width:100%;
+                            font-size: .12rem;
+                            color: #333;
+                            -webkit-line-clamp:2;
+                            white-space:nowrap;
+                            text-overflow:ellipsis;
+                        }
+                    }
+                }
+            }
+            &.sec4 {
+                position: relative;
+                height: 3.3rem;
+                text-align: center;
+                .img_box {
+                    .icon {
+                        display: block;
+                        width: 100%;
+                        height: .8rem;
+                        background: url('../../assets/images/tax/icon/icon_stop.png') no-repeat center;
+                        background-size: contain;
+                        
+                        &.arrow {
+                            position: absolute;
+                            left: 0;
+                            bottom: .15rem;
+                            height: .26rem;
+                            background: url('../../assets/images/tax/intro/ic_arrow_dacoration.png') no-repeat center;
+                            background-size: contain;
+                            animation: faqNextStep .5s ease-in-out infinite alternate;
+                        }
+                    }
+                }
+                .txt_box {
+                    padding-bottom: .7rem;
+                    .tit {
+                        margin: .1rem 0;
+                    }
+                }
+                .btn_check {
+                    display: block;
+                    width: calc(100% + .6rem);
+                    height: .46rem;
+                    line-height: .46rem;
+                    background: #212266;
+                    color: #fff;
+                    font-weight: 700;
+                    font-size: .16rem;
+                    margin-left: -.3rem;
+                }
+            }
+        }
+    }
+}
+
+// 금투세 안내
+.visual_wrap {
+    position:relative;
+    padding:.4rem 0;
+    background-color:#6d6db9;
+
+    .title_box {
+        padding:0 .3rem;
+    }
+    
+    .title {
+        color:#fff;
+        font-size:.32rem;
+        line-height:.42rem;
+        letter-spacing:-.016rem;
+        text-align:center;
+    }
+
+    .desc {
+        margin-top:.05rem;
+        color:#fff;
+        font-size:.12rme;
+        line-height:.2rem;
+        letter-spacing:-.003rem;
+        text-align:center;
+        opacity:.7;
+    }
+
+    .motion_wrap {
+        overflow:hidden;
+        position:relative;
+        left:0;
+        right:0;
+        max-width:640px;
+        height:2.8rem;
+        margin:.55rem auto .4rem;
+
+        .motion_inner {
+            width:100%;
+            height:100%;
+            margin-left:.1rem;
+        }
+
+        &.on {
+
+            .motion {
+
+                &.sec1 {
+                    animation:ani_sec1 .2s 1.6s ease-in forwards;  
+                }
+    
+                &.sec2 {
+                    animation:ani_sec2 .2s 1.6s ease-in forwards;  
+                }
+    
+                &.sec3 {
+                    animation:ani_sec3 .4s 2.1s ease-in forwards;
+                }
+    
+                &.sec4 {
+                    animation:ani_sec4 .4s 3.9s ease-out forwards;
+                }
+
+                .mo_img {
+
+                    &.sell {
+                        animation:ani_sell .7s .7s ease-in forwards;
+                    }
+    
+                    &.hand {
+                        animation:ani_hand .4s .4s ease-in forwards;
+                    }
+    
+                    &.text01 {
+                        animation:ani_text01 .5s 2.8s ease-out forwards;
+                    }
+    
+                    &.text02 {
+                        animation:ani_text02 .4s 2.9s ease-out forwards;
+                    }
+                }
+            }
+        }
+        
+        .motion {
+            position:absolute;
+            height:2.8rem;
+
+            &.sec1 {
+                top:-.1rem;
+                left:1.1rem;
+            }
+
+            &.sec2 {
+                left:1.1rem;
+            }
+
+            &.sec3 {
+                left:.42rem;
+                opacity:0;
+            }
+
+            &.sec4 {
+                left:2.15rem;
+                opacity:0;
+            }
+
+            .mo_img {
+                position:absolute;
+                display:block;
+                
+                &.phone {
+                    width:2.5rem;
+                }
+
+                &.sell {
+                    top:.6rem;
+                    left:.79rem;
+                    width:.9rem;
+                    height:.9rem;
+                    background:url(../../assets/images/tax/icon/btn_sell.png)no-repeat 0 0 / contain;
+                }
+
+                &.hand {
+                    left:-.95rem;
+                    bottom:-.1rem;
+                    width:2rem;
+                }
+
+                &.tax {
+                    top:0;
+                    width:2.2rem;
+                }
+
+                &.text01 {
+                    top:.74rem;
+                    left:.8rem;
+                    width:.827rem;
+                }
+
+                &.text02 {
+                    top:1.6rem;
+                    left:.4rem;
+                    width:.922rem;
+                    opacity:0;
+                }
+
+                &.new {
+                    width:.6rem;
+                }
+            }
+        }
+    }
+}
+
+@keyframes ani_sec1 {
+
+    0% {
+        left:1.1rem;
+    }
+
+    30% {
+        left:1rem;
+    }
+
+    100% {
+        left:.59rem;
+    }
+}
+
+@keyframes ani_sec2 {
+
+    0% {
+        left:1.1rem;
+        opacity:1;
+    }
+
+    90% {
+        opacity:0;
+    }
+
+    100% {
+        left:.59rem;
+        opacity:0;
+    }
+}
+
+@keyframes ani_sec3 {
+
+    0% {
+        opacity:0;
+    }
+
+    100% {
+        opacity:1;
+    }
+}
+
+@keyframes ani_sec4 {
+
+    0% {
+        opacity:0;
+    }
+
+    100% {
+        opacity:1;
+    }
+}
+
+@keyframes ani_hand {
+
+    0% {
+        left:-.95rem;
+    }
+
+    100% {
+        left:-.7rem;
+        bottom:.35rem;
+    }
+}
+
+@keyframes ani_sell {
+
+    0% {
+        background:url(../../assets/images/tax/icon/btn_sell.png)no-repeat 0 0 / contain;
+    }
+
+    10% {
+        background:url(../../assets/images/tax/icon/btn_sell_on.png)no-repeat 0 0 / contain;
+    }
+
+    100% {
+        background:url(../../assets/images/tax/icon/btn_sell_on.png)no-repeat 0 0 / contain;
+    }
+}
+
+@keyframes ani_text01 {
+
+    0% {
+        top:.74rem;
+        left:.8rem;
+        width:.827rem;
+    }
+
+    100% {
+        left:.92rem;
+        width:.649rem;
+        opacity:.5;
+    }
+}
+
+@keyframes ani_text02 {
+    
+    0% {
+        top:1.6rem;
+        left:.4rem;
+        opacity:0;
+    }
+
+    100% {
+        top:1.22rem;
+        left:.67rem;
+        opacity:1;
+    }
+}
+
+// FAQ
+.header {
+    position:relative;
+    width:100%;
+    margin:0 auto;
+    padding:.14rem 0 .13rem;
+    border-bottom:.01rem solid #ddd;
+
+    h1.title {
+        width:100%;
+        color:#212121;
+        font-size:.2rem;
+        font-weight:700;
+        letter-spacing:-.005rem;
+        text-align:center;
+    }
+
+    .btn_close {
+        display:block;
+        position:absolute;
+        top:50%;
+        right:.17rem;
+        transform:translateY(-50%);
+        width:.2rem;
+        height:.2rem;
+        background:url("../../assets/images/tax/icon/icon_close.png") no-repeat 0 0;
+        background-size:contain;
+    }
+}
+
+.container {
+    margin:.2rem 0 0;
+    padding:0 .14rem;
+}
+
+.faq_banner_img {
+
+    .img_box {
+        width:.8rem;
+        height:.8rem;
+        margin:0 auto;
+
+        > img {
+            display:block;
+            width:100%;
+        }
+    }
+
+    .desc {
+        display:block;
+        width:100%;
+        margin-top:.08rem;
+        color:#333;
+        font-size:.18rem;
+        font-weight:600;
+        line-height:.24rem;
+        letter-spacing:-.0045rem;
+        text-align:center;
+    }
+}
+
+.search_wrap {
+    margin-top:.2rem;
+
+    .search_box {
+        display:flex;
+        align-items:center;
+        position:relative;
+        width:100%;
+        height:.36rem;
+        border:.01rem solid #999;
+        border-radius:.04rem;
+
+        .inp_search {
+            display:block;
+            width:100%;
+            height:100%;
+            padding:0 .72rem 0 .08rem;
+            border-radius:.04rem;
+            font-size:.12rem;
+            font-weight:400;
+            letter-spacing:-.003rem;
+
+            &::placeholder {
+                color:#ccc;
+            }
+
+            &:placeholder-shown {
+                & + .btn_input_del {
+                    display:none;
+                }
+            }
+        }
+
+        button[class^='btn_'] {
+            display:block;
+            position:absolute;
+            
+            &.btn_input_del {
+                right:.39rem;
+                width:.3rem;
+                height:.3rem;
+                background:url("../../assets/images/tax/icon/icon_input_del.png") no-repeat 0 0 / contain;
+            }
+
+            &.btn_search {
+                right:0;
+                width:.36rem;
+                height:.36rem;
+                padding:.08rem;
+                border-left:.01rem solid #999;
+                background:url("../../assets/images/tax/icon/icon_search.png") no-repeat center / .2rem .2rem;
+            }
+        }
+    }
+}
+
+// tab 영역
+.tab_wrap {
+
+    // tab scroll
+    &.tab_scroll {
+        overflow:hidden;
+        width:calc(100% + 0.28rem);
+        margin-left:-.14rem;
+
+        .tab_list {
+            overflow-x:scroll;
+            display:flex;
+            align-items:center;
+            padding:.12rem .14rem;
+            white-space:nowrap;
+            
+            .btn_tab_round {
+                display:block;
+                padding:.05rem .12rem;
+                border-radius:.135rem;
+                background-color:#f5f5f5;
+                font-size:.12rem;
+                letter-spacing:-.003rem;
+
+                + .btn_tab_round {
+                    margin-left:.06rem;
+                }
+    
+                &.on {
+                    background-color:#212266;
+                    color:#fff;
+                }
+            }
+        }
+    }
+
+    +.faq_list_wrap {
+        margin-top:.08rem;
+    }
+}
+
+.faq_list_wrap {
+    margin-top:.2rem;
+
+    &.active {
+
+        .faq_total {
+            
+            .result_box {
+                display:inline-block;
+            }
+        }
+    }
+
+    .faq_total {
+        color:#666;
+        font-size:.12rem;
+        line-height:.18rem;
+
+        .result_box {
+            display:none;
+            color:#666;
+            font-size:.12rem;
+            line-height:.18rem;
+            
+            .result_txt {
+                color:#bd527e;
+                font-size:.12rem;
+            }
+        }
+
+        .num {
+            display:inline-block;
+            margin-left:.04rem;
+            color:#bd527e;
+            font-size:.12rem;
+            vertical-align:top;
+        }
+    }
+
+    .faq_cont {
+        margin-top:.08rem;
+        border-top:.01rem solid #333;
+
+        .faq_list_item {
+            
+            .btn_query {
+                display:block;
+                position:relative;
+                width:100%;
+                padding:.2rem 0;
+                border-bottom:.01rem solid #ddd;
+
+                .tit {
+                    display:block;
+                    color:#333;
+                    font-size:.14rem;
+                    font-weight:400;
+                    line-height:.2rem;
+                    letter-spacing:-.0035rem;
+                    text-align:left;
+                }
+
+                &::after {
+                    content:'';
+                    display:block;
+                    position:absolute;
+                    top:50%;
+                    right:.14rem;
+                    transform:translateY(-50%);
+                    width:.16rem;
+                    height:.16rem;
+                    background:url("../../assets/images/tax/icon/ico_faq_open.png") no-repeat 0 0;
+                    background-size: 100% 100%;
+                }
+
+                &.on {
+                    border-bottom:0;
+                    
+                    &::after {
+                        background-image:url("../../assets/images/tax/icon/ico_faq_close.png");
+                    }
+                }
+            }
+            
+            .answer_box {
+                width:calc(100% + .28rem);
+                margin-left:-.14rem;
+                padding:.2rem .14rem;
+                background-color:#fafafc;
+
+                .text,
+                p, p * {
+                    color:#666;
+                    font-size:.12rem;
+                    line-height:.18rem;
+                    letter-spacing:-.003rem;
+                }
+            }
+        }
+    }
+
+    // 검색결과 없음
+    .no_data {
+        display:none;
+        padding:.4rem .14rem;
+        text-align:center;
+
+        &::before {
+            content:'';
+            display:block;
+            margin:0 auto;
+            width:.8rem;
+            height:.8rem;
+            background:url("../../assets/images/tax/icon/icon_noresult.png") no-repeat 0 0 / contain;
+        }
+
+        .text {
+            margin-top:.2rem;
+            color:#616161;
+            font-size:.14rem;
+            line-height:.2rem;
+            letter-spacing:-.0035rem;
+        }
+    }
+}
+
+.cnt_tets{
+    position: absolute;
+    left: 0.97rem;
+    top: 1.15rem;
+    z-index: 10;
+    font-size : .12rem;
+    width: .5rem;
+    span{
+        display: inline-block;
+        font-size: .12rem;
+        color: #333;
+    }
+}
+.cnt_tets2{
+    position: absolute;
+    left: 1rem;
+    top: .96rem;
+    z-index: 10;
+    font-size : .12rem;
+    width: .5rem;
+    span{
+        display: inline-block;
+        font-size: .12rem;
+        color: #333;
+    }
+}
+
+.section.sec4{
+    .tit.fz20{
+        font-size: .2rem !important;
+        line-height: .24rem;
+    }
+}
+
+.sec1_btn_type2{
+    display: none;
+    position: fixed;
+    bottom: .1rem;
+    left: 0;
+    width: 100%;
+    z-index: 300;
+    padding: 0 .3rem;
+    a{
+        display: block;
+        height: .48rem;
+        line-height: .48rem;
+        background: #32336b;
+        border-radius: .24rem;
+        color: #fff;
+        font-size: .16rem;
+        font-weight: normal;
+        text-align: center;
+        box-shadow: 0 .05rem .24rem rgba(#32336b,.4);
+    }
+    &.on{
+        a{
+            animation: BtnEffect1 2s ease-in-out 1 forwards;
+        }
+    }
+}
+
+
+
+
+@keyframes updown_animate {
+    40% {
+        background-position-y: 0;
+    }
+    50% {
+        background-position-y: 100%;
+    }
+    90% {
+        background-position-y: 100%;
+    }
+    100% {
+        background-position-y: 0;
+    }
+}
+@keyframes updown_translate {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(250%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes nextStep {
+    0%{
+        bottom: .15rem;
+    }
+    80%{
+        bottom: .1rem;
+    }
+    100%{
+        bottom: .1rem;
+    }
+}
+
+@keyframes faqNextStep {
+    0%{
+        bottom: .2rem;
+    }
+    80%{
+        bottom: .15rem;
+    }
+    100%{
+        bottom: .15rem;
+    }
+}
+
+
+
+@keyframes one_figure {
+    0%{
+        bottom: -1.3rem;
+    }
+    30%{
+        bottom: -30%;
+    }
+    80%{
+        bottom: -30%;
+    }
+    100%{
+        bottom: 0;
+    }
+}
+@keyframes one_figure_line{
+    0%{
+        height: 13.5%;
+    }
+    30%{
+        height: 35%;
+    }
+    80%{
+        height: 35%;
+    }
+    100%{
+        height: 62%;
+    }
+}
+
+@keyframes two_figure {
+    0%{
+        bottom: -1.3rem;
+    }
+    100%{
+        bottom: 0;
+    }
+}
+@keyframes two_figure_line {
+    0%{
+        height: 0;
+    }
+    100%{
+        height: 70%;
+    }
+}
+
+@keyframes red_figure {
+    0%{
+        opacity: 0;
+        top: -.65rem;
+    }
+    100%{
+        opacity: 1;
+        top: -.16rem;
+    }
+}
+@keyframes txtType1 {
+    0%{
+        opacity: 0;
+        top: -.1rem;
+    }
+    100%{
+        opacity: 1;
+        top: 0;
+    }
+}
+@keyframes txtType2 {
+    0%{
+        opacity: 0;
+        top: .35rem;
+    }
+    100%{
+        opacity: 1;
+        top: .55rem;
+    }
+}
+@keyframes txtType3 {
+    0%{
+        opacity: 0;
+        bottom: .1rem;
+    }
+    100%{
+        opacity: 1;
+        bottom: .3rem;
+    }
+}
+@keyframes txtType4 {
+    0%{
+        opacity: 0;
+        bottom: .1rem;
+    }
+    100%{
+        opacity: 1;
+        bottom: .5rem;
+    }
+}
+@keyframes sec3Motion {
+    0%{
+        opacity: 0;
+        top: -.1rem;
+    }
+    100%{
+        opacity: 1;
+        top: 0;
+    }
+}
+@keyframes figureMotion1 {
+    0%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+    15%{
+        left: 2.3rem;
+        top: -.06rem;
+        z-index: 9;
+    }
+    20%{
+        left: 2.2rem;
+        top: 0rem;
+        z-index: 11;
+    }
+    90%{
+        left: 2.2rem;
+        top: 0rem;
+        z-index: 9;
+    }
+    100%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+}
+@keyframes figureMotion1_two {
+    0%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+    15%{
+        left: -.1rem;
+        top: -.06rem;
+        z-index: 9;
+    }
+    20%{
+        left: 0;
+        top: 0;
+        z-index: 11;
+    }
+    90%{
+        left: 0;
+        top: 0;
+        z-index: 9;
+    }
+    100%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+}
+
+@keyframes figureMotion2 {
+    0%{
+        right: 40%;
+        bottom: 40%;
+        z-index: 9;
+    }
+    15%{
+        right: -.1rem;
+        bottom: -.11rem;
+        z-index: 9;
+    }
+    20%{
+        right: 0rem;
+        bottom: -.05rem;
+        z-index: 11;
+    }
+    90%{
+        right: 0rem;
+        bottom: -.05rem;
+        z-index: 9;
+    }
+    100%{
+        right: 40%;
+        bottom: 40%;
+        z-index: 9;
+    }
+}
+@keyframes figureMotion2_two {
+    0%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+    15%{
+        left: 1.9rem;
+        top: -.3rem;
+        z-index: 9;
+    }
+    20%{
+        left: 1.8rem;
+        top: -.2rem;
+        z-index: 11;
+    }
+    90%{
+        left: 1.8rem;
+        top: -.2rem;
+        z-index: 9;
+    }
+    100%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+}
+
+@keyframes figureMotion3 {
+    0%{
+        left: 40%;
+        bottom: 40%;
+        z-index: 9;
+    }
+    15%{
+        left: .1rem;
+        bottom: .24rem;
+        z-index: 9;
+    }
+    20%{
+        left: .2rem;
+        bottom: .3rem;
+        z-index: 11;
+    }
+    90%{
+        left: .2rem;
+        bottom: .3rem;
+        z-index: 9;
+    }
+    100%{
+        left: 40%;
+        bottom: 40%;
+        z-index: 9;
+    }
+}
+@keyframes figureMotion3_two {
+    0%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+    15%{
+        left: 2rem;
+        top: .3rem;
+        z-index: 9;
+    }
+    20%{
+        left: 1.9rem;
+        top: .4rem;
+        z-index: 11;
+    }
+    90%{
+        left: 1.9rem;
+        top: .4rem;
+        z-index: 9;
+    }
+    100%{
+        left: 40%;
+        top: 40%;
+        z-index: 9;
+    }
+}
+
+
+@keyframes forwardRotate {
+    from { 
+        transform: rotate(0deg),
+        translate(-10% -50%); 
+    }
+    to { 
+        transform: rotate(360deg); 
+    }
+}
+@keyframes reverseRotate {
+    from { transform: rotate(-0deg); }
+    to { transform: rotate(-360deg); }
+}
+.satellite_box1{
+    display: none;
+    position: absolute; top: 50%;
+    left: 50%;
+    width: .81rem;
+    height: .81rem;
+    z-index: 20;
+    background: url('../../assets/images/intro/figure_group1_2.png') no-repeat 0 0;
+    background-size: .81rem .81rem;
+    animation: forwardRotate 2s linear infinite; 
+}
+@keyframes BtnEffect1 {
+    0%{
+        background: none;
+        border: 1px solid #fff;
+        font-weight: normal;
+    }
+    100%{
+        background: #32336b;
+        border: 1px solid #32336b;
+        font-weight: bold;
+    }
+}
+@keyframes BtnEffect2 {
+    0%{
+        background: #444482;
+        border-radius: .2rem;
+        width: .9rem;
+    }
+    20%{
+        background: #444482;
+        width: .3rem;
+        border-radius: 50%;
+    }
+    60%{
+        background: #444482;
+        width: .3rem;
+        border-radius: 50%;
+    }
+    100%{
+        background: #6d6db9;
+        width: .9rem;
+        border-radius: .2rem
+    }
+}
+@keyframes handEffect {
+    0%{
+        opacity: 0;
+        left: -.45rem;
+        top: 1rem;
+    }
+    30%{
+        opacity: 1;
+        left: -.45rem;
+        top: 1rem;
+    }
+    70%{
+        opacity: 1;
+        left: -.45rem;
+        top: 1rem;
+    }
+    100%{
+        opacity: 1;
+        left: -.4rem;
+        top: 1.02rem;
+    }
+}
+@keyframes textEffect1 {
+    0%{
+        opacity: 0;
+        bottom: .45rem;
+    }
+    100%{
+        opacity: 1;
+        bottom: .75rem;
+    }
+}
+@keyframes textEffect2 {
+    0%{
+        opacity: 0;
+        bottom: -.15rem;
+    }
+    100%{
+        opacity: 1;
+        bottom: .25rem;
+    }
+}
+
+

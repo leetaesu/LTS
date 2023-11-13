@@ -1,0 +1,180 @@
+@charset "utf-8";
+
+
+// 테마별 색상
+$colors:(
+    light: (
+      tt1 : #212121,
+      tt2 : #333333,
+      tt3 : #666666,
+      tt4 : #999999,
+      tt5 : #cccccc,
+      tt6 : #ffffff,
+      tt7 : #4f3fc6,
+      ln1 : #B7BEC4,
+      ln2 : #DEE2E6,
+      ln3 : #E7EBEF,
+      ln4 : #F0F2F4,
+      ln5 : #F7F9FA,
+      ln6 : #FFFFFF,
+      ln7 : #4f3fc6,
+      ln8 : #333333,
+      bg1 : #B7BEC4,
+      bg2 : #DEE2E6,
+      bg3 : #E7EBEF,
+      bg4 : #F0F2F4,
+      bg5 : #F7F9FA,
+      bg6 : #FFFFFF,
+      bg7 : #4f3fc6,
+      bg8 : #333333,
+      po1 : #4f3fc6,
+      po2 : #568EDD,
+      inc1 : #E22D72,
+      inc2 : #FEE4ED,
+      inc3 : #FFEEF4,
+      dec1 : #1C4FDE,
+      dec2 : #E5EBFC,
+      dec3 : #EEF2FF,
+      sec1 : #FFF946,
+      sec2 : #E8E5FC,
+      sec3 : #FF5353,
+      sec4 : #372C8A,
+      sec5 : #C9C4ED,
+      sec6 : #F2499D,
+      sec7 : #FFE6E6,
+      sec8 : #F1940E,
+      sec9 : #FFEECC,
+      sec10 : #FFB43E,
+      alpha50: rgba(255, 255, 255, 0.5),
+      alpha99: rgba(255, 255, 255, 0.80),
+      coin1 : #feca46,
+    ),
+    dark: (
+      tt1 : #eeeeee,
+      tt2 : #dddddd,
+      tt3 : #bbbbbb,
+      tt4 : #a0a0a0,
+      tt5 : #666666,
+      tt6 : #ffffff,
+      tt7 : #7664ff,
+      ln1 : #8E9298,
+      ln2 : #45464B,
+      ln3 : #35393C,
+      ln4 : #292C2E,
+      ln5 : #202024,
+      ln6 : #121212,
+      ln7 : #7664FF,
+      ln8 : #DDDDDD,
+      bg1 : #8E9298,
+      bg2 : #45464B,
+      bg3 : #35393C,
+      bg4 : #292C2E,
+      bg5 : #202024,
+      bg6 : #121212,
+      bg7 : #7664FF,
+      bg8 : #DDDDDD,
+      po1 : #7664FF,
+      po2 : #3362A4,
+      inc1 : #FF3482,
+      inc2 : #482431,
+      inc3 : #522B39,
+      dec1 : #225CFF,
+      dec2 : #262A43,
+      dec3 : #2F3557,
+      sec1 : #F8F110,
+      sec2 : #342E58,
+      sec3 : #C34949,
+      sec4 : #6155C0,
+      sec5 : #2A2647,
+      sec6 : #CB3073,
+      sec7: #532A2A,
+      sec8 : #F1940E,
+      sec9 : #372706,
+      sec10 : #A76704,
+      alpha50: rgba(33, 33, 33, 0.5),
+      alpha99: rgba(33, 33, 33, 0.80),
+      coin1 : #6f4500,
+    )
+);
+@function func_color($key, $type: 'light'){
+  @each $name, $color in map-get($colors, $type){
+    @if($key == $name){
+      @return $color;
+    }
+  }
+}
+
+@mixin blur($color,  $important: false) {
+  color: transparent !important;
+  text-shadow: 0 0 15px func_color($color) #{if($important, '!important', '')};
+  &::before {
+    filter: blur(4px);
+  }
+  &::after {
+    filter: blur(4px);
+  }
+  @at-root body.dark & {
+    text-shadow: 0 0 15px func_color($color, dark) #{if($important, '!important', '')};
+  }
+}
+
+@mixin color($property,$color, $important: false){
+  #{$property}: func_color($color) #{if($important, '!important', '')};
+  @at-root body.dark & {
+    #{$property}: func_color($color, dark) #{if($important, '!important', '')};
+  }
+}
+
+@mixin font($size){
+  @if($size == 30){
+    font-size: 0.3rem;
+    letter-spacing: -0.0075rem;
+    line-height: 0.36rem;
+  } @else if($size == 24){
+    font-size: 0.24rem;
+    letter-spacing: -0.006rem;
+    line-height: 0.26rem;
+  } @else if($size == 20){
+    font-size: 0.20rem;
+    letter-spacing: -0.005rem;
+    line-height: 0.26rem;
+  } @else if($size == 16){
+    font-size: 0.16rem;
+    letter-spacing: -0.004rem;
+    line-height: 0.22rem;
+  } @else if($size == 13){
+    font-size: 0.13rem;
+    letter-spacing: -0.0033rem;
+    line-height: 0.19rem;
+  } @else if($size == 12){
+    font-size: 0.12rem;
+    letter-spacing: -0.003rem;
+    line-height: 0.16rem;
+  } @else if($size == 11){
+    font-size: 0.11rem;
+    letter-spacing: -0.0028rem;
+    line-height: 0.15rem;
+  } @else if($size == 10){
+    font-size: 0.1rem;
+    letter-spacing: -0.0025rem;
+    line-height: 0.14rem;
+  }
+}
+
+@mixin bgImg($lightUrl,$darkUrl:null,$width:null,$height:null) {
+  background-image: url($lightUrl);
+  width: $width;
+  height: $height;
+  background-size: contain;
+  background-repeat: no-repeat;
+  @at-root body.dark & {
+    background-image: url($darkUrl);
+  }
+}
+
+@mixin shadow($colorStart,$colorCenter,$colorEnd:null){
+  @include GradientVertical(func_color($colorStart),func_color($colorCenter),func_color($colorEnd));
+  @at-root body.dark & {
+      @include GradientVertical(func_color($colorStart, dark),func_color($colorCenter, dark),func_color($colorEnd, dark));
+  }
+}

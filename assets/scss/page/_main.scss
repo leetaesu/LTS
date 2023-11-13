@@ -1,0 +1,133 @@
+@charset "utf-8";
+// 전달시 삭제
+#__bs_notify__{display: none !important; border: 5px solid #fff;}
+strong.red{
+    color: rgb(167, 54, 2);
+}
+.strength{
+    p{
+        margin-bottom: 0;
+        margin-left: 15px;
+        line-height: 24px;
+        font-size: 12px;
+        color: #dfdfdf;
+        font-weight: bold;
+        i{
+            color: #fff;
+            margin-right: 10px;
+        }
+    }
+}
+.profile_down{
+    a{
+        color: #fff;
+        font-weight: bold;
+        vertical-align: middle;
+        img{
+            width: 30px;
+            margin-right: 10px;
+        }
+    }
+}
+.resume-item,.resume-title{
+    display: none;
+    &.recently{
+        display: block;
+    }
+}
+.filter-recently{
+    cursor: pointer;
+}
+
+.masking{
+    position: relative;
+    display: inline-block;
+    cursor: zoom-in;
+    &::after{
+        content:"";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #a0a0a0;
+    }
+    &:hover{
+        &::after{
+            display: none;
+        }
+    }
+}
+
+#portfolio-flters{
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.portfolio-wrap{
+    text-align: center;
+}
+.gslide-image{
+    scrollbar-color: #d4aa70 #e4e4e4;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }    
+    &::-webkit-scrollbar-track {
+        background-color: #e4e4e4;
+        border-radius: 100px;
+    }    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        border: 6px solid rgba(0, 0, 0, 0.18);
+        border-left: 0;
+        border-right: 0;
+        background-color: #8070d4;
+    }
+}
+
+
+
+
+
+.sub_title{
+    h2{
+        font-weight: bold;
+    }
+    ol{
+        li{
+            a{
+                color: #000;
+                &.on{
+                    font-weight: bold;
+                    color: #a30023b7;
+                }
+                &:hover{
+                    font-weight: bold;
+                    color: #a30023b7;
+                }
+            }
+        }
+    }
+}
+
+
+.portfolio-wrap{
+    position: relative;
+    cursor: pointer;
+    .interaction_thum{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #b4cdca;
+        color: #ffffff;
+        font-size: 35px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

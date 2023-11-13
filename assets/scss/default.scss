@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+@import '../css/lib/swiper-bundle.min.css';
+
+// 공통
+@import './font.scss';
+@import './reset.scss';
+@import './variable.scss';
+@import './function.scss';
+@import './mixin.scss';
+@import './keyframe.scss';
+@import './icons.scss';
+@import './util.scss';
+@import './popup.scss';
+@import './chart.scss';
+
+// 카테고리
+@import './page/main';

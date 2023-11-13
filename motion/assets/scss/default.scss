@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+@import '../css/lib/swiper-bundle.min.css';
+
+// 공통
+@import './font.scss';
+@import './reset.scss';
+@import './variable.scss';
+@import './mixin.scss';
+@import './keyframe.scss';
+
+// 카테고리
+@import './page/character';
+@import './page/chart';
+@import './page/tax';
+@import './page/etc';
+@import './page/lottie';
+
+
+.motion_title{
+    text-align: center;
+    font-size: .2rem;
+    margin: .2rem 0 .5rem;
+    font-weight: 700;
+    color: #292929;
+    animation: TextMotion 2s ease-in-out infinite forwards;
+  }
+  @keyframes TextMotion {
+    0% {
+      color: #292929;
+    }
+    50% {
+      color: #2177bd;
+    }
+    100% {
+      color: #292929;
+    }
+  }
+  
+  // 컬러 테마 샘플
+  .thema_infor{
+    @include clearBoth();
+    margin: .1rem;
+    li{
+        margin:0 .1rem .1rem 0;
+        float: left;
+        border: 1px dashed #000;
+        background: #fff;
+        color: rgb(128, 128, 128);
+        cursor: pointer;
+        &.active{
+            &:nth-child(1){
+                color: #7092be;
+            }
+            &:nth-child(2){
+                color: #30b0ac;
+            }
+            &:nth-child(3){
+                color: #02046c;
+            }
+            &:nth-child(4){
+                background: #000;
+                color: #f5248c;
+            }
+        }
+    }
+    &.pageIn{
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        z-index: 9999;
+        li{
+            float: none;
+            border: none;
+            width: .2rem;
+            height: .2rem;
+            @include font(11);
+            text-align: center;
+            @include textOverflowLine(1);
+            @include GradientVertical(rgb(49, 143, 146),#145a57);
+            color: #fff;
+            border-radius: 50%;
+            margin-bottom: .2rem;
+        }
+    }
+  }

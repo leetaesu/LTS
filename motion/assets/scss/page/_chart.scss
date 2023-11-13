@@ -1,0 +1,1297 @@
+@charset "utf-8";
+// 전달시 삭제
+#__bs_notify__{display: none !important; border: 5px solid #fff;}
+
+// 1번 차트 샘플 구현 /*///////////////////////////
+.chart_wrap {
+    .chart_box1{
+        position: relative;
+        max-width: 640px;
+        .chart_tab{
+            ul{
+                @include clearBoth();
+                li{
+                    position: relative;
+                    float: left;
+                    color: #fff;
+                    font-weight: bold;
+                    font-size: 12px;
+                    width: 80px;
+                    height: 30px;
+                    box-sizing: border-box;
+                    padding-top: 10px;
+                    background: #8888ef;
+                    text-align: center;
+                    border-radius: 10px 20px 0 0;
+                    cursor: pointer;
+                    &.active{
+                        background: #4d43c4;
+                    }
+                }
+            }
+        }
+        .chart_cont{
+            position: relative;
+            background: #4d43c4;
+            border-radius: 0 10px 10px 10px;
+            color: #fff;
+            padding-bottom: 50px;
+            .my_infor{
+                padding: 20px;
+                position: relative;
+                .user_name{
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #fff;
+                    margin-bottom: 10px;
+                    span{
+                        cursor: pointer;
+                        img{
+                            width: 20px;
+                            height: 20px;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+                .user_ranking{
+                    font-size: 16px;
+                    color: rgba(255,255,255,.7);
+                    letter-spacing: -2px;
+                    margin-bottom: 10px;
+                    span{
+                        font-size: 12px;
+                    }
+                }
+                .league{
+                    margin-bottom: 10px;
+                    a{
+                        position: relative;
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #fff;
+                        &::after{
+                            content:"";
+                            display: block;
+                            position: absolute;
+                            right: -14px;
+                            top: 7px;
+                            background: url("../../assets/chart/icon/ico_arr_down.png") no-repeat 0 0;
+                            width: 9px;
+                            height: 5px;
+                            background-size: 100% 100%;
+                            transform: rotate(-90deg);
+                        }
+                    }
+                }
+                // 실시간 랭킹
+                .state_infor{
+                    position: absolute;
+                    right: 20px;
+                    top: 20px;
+                    .st_bn{
+                        text-align: center;
+                        font-weight: bold;
+                        color: #ffc97e;
+                        border: 1px solid #ffc97e;
+                        border-radius: 5px;
+                        font-size: 12px;
+                        padding: 4px 7px 5px;
+                    }
+                    .st_rk{
+                        text-align: right;
+                        margin: 10px 0 10px;
+                        .inner_rk1{
+                            position: relative;
+                            font-size: 34px;
+                            font-weight: bold;
+                            color: #fff;
+                            &::after{
+                                content:"";
+                                display: block;
+                                position: absolute;
+                                left: -16px;
+                                top: 7px; 
+                                background: url("../../assets/chart/icon/ico_ranking.png") no-repeat 0 0;
+                                width: 26px;
+                                height: 22px;
+                                background-size: 100% 100%;
+                            }
+                        }
+                        .inner_rk2{
+                            position: relative;
+                            font-size: 14px;
+                            font-weight: bold;
+                            color: #fff;
+                            margin: 7px 20px 0 0;
+                            padding-right: 5px;
+                            &::after{
+                                content: "";
+                                display: block;
+                                position: absolute;
+                                right: -18px;
+                                top: 2px;
+                                background: url('../../assets/chart/icon/ico_arr_down2.png') no-repeat 0 0;
+                                width: 16px;
+                                height: 12px;
+                                background-size: 100% 100%;
+                                transform: rotate(180deg);
+                            }
+                        }
+                    }
+                }
+            }
+            .my_chart{
+                position: relative;
+                overflow: hidden;
+                height: 150px;
+                .my_graph{
+                    display: none;
+                    position: absolute;
+                    left: 200px;
+                    bottom:0;
+                    height: 111px; // 값을 받아온다
+                    .point{
+                        display: block;
+                        border-radius: 10px;
+                        width: 10px;
+                        height: 10px;
+                        background-color: #e10000fc;
+                        opacity: 0;
+                        animation: pointEffect 1.5s 0s ease-in-out infinite forwards;
+                    }
+                    .graph_pt{
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        bottom: 0;
+                        width: 1px;
+                        height: 100%;
+                        border: 1px dashed #e10000fc;
+                        opacity: 0;
+                        animation: pointLine 2s 0s linear infinite forwards;
+                    }
+                    &.type2{
+                        left: 130px;
+                        height: 148px;
+                        .point{
+                            background-color: #c1e212;
+                        }
+                        .graph_pt{
+                            border-color: #c1e212;
+                            animation: pointLine 2s 0s linear infinite forwards;
+                        }
+                    }
+                    &.type3{
+                        left: 280px;
+                        height: 56px;
+                        .point{
+                            background-color: #4791ff;
+                        }
+                        .graph_pt{
+                            border-color: #4791ff;
+                            animation: pointLine 2s 0s linear infinite forwards;
+                        }
+                    }
+                    &.type4{
+                        left: 172px;
+                        height: 133px;
+                        .point{
+                            background-color: #02bc77;
+                        }
+                        .graph_pt{
+                            border-color: #02bc77;
+                            animation: pointLine 2s 0s linear infinite forwards;
+                        }
+                    }
+                    .tolltip{
+                        position: absolute;
+                        top: -39px;
+                        left: 50%;
+                        z-index: 99;
+                        transform: translateX(-50%);
+                        color: #89e9f0;
+                        background: #000;
+                        border-radius: 5px;
+                        text-align: center;
+                        padding: 6px 10px 7px;
+                        white-space: nowrap;
+                        &::after{
+                            content: "▼";
+                            display: block;
+                            position: absolute;
+                            bottom: -9px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            color: #000;
+                        }
+
+                    }
+                }
+            }
+            .menu{
+                position: absolute;
+                bottom: 25px;
+                text-align: center;
+                width: 100%;
+                li{
+                    position: relative;
+                    display: inline-block;
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: #fff;
+                    margin-right: 10px;
+                    padding-left: 12px;
+                    cursor: pointer;
+                    &::before{
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        display: block;
+                        content:"";
+                        background: #000;
+                        border-radius: 10px;
+                        width: 8px;
+                        height: 8px;
+                    }
+                    &.type1{
+                        &::before{
+                            background-color: #ff85b4;
+                        }
+                        &.active{
+                            color: #ff85b4;
+                        }
+                    }
+                    &.type2{
+                        &::before{
+                            background-color: #c1e212;
+                        }
+                        &.active{
+                            color: #c1e212;
+                        }
+                    }
+                    &.type3{
+                        &::before{
+                            background-color: #4791ff;
+                        }
+                        &.active{
+                            color: #4791ff;
+                        }
+                    }
+                    &.type4{
+                        &::before{
+                            background-color: #02bc77;
+                        }
+                        &.active{
+                            color: #02bc77;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #chartType1{
+        position: absolute;
+        bottom: -15px;
+        width: 400px;
+        height: 200px;
+        svg{
+            opacity: 0;
+            position: absolute;
+            bottom: -160px;
+            &.active{
+                animation: areaInteractive 1.5s 0s ease-in 1 forwards;
+            }
+        }
+    }
+    @keyframes areaInteractive {
+        0%{
+        opacity: 0;
+        bottom: -160px;
+        }
+        50%{
+            opacity: .1;
+            bottom: -30px;
+        }
+        100%{
+            opacity: 1;
+            bottom: 0;
+        }
+    }
+    @keyframes pointEffect {
+        0%{
+        opacity: 1;
+        }
+        50%{
+            opacity: .5;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    @keyframes pointLine {
+        0%{
+            height: 60%;
+            
+        }
+        1%{
+            opacity: 1;
+        }
+        80%{
+            height: 90%;
+            opacity: 1;
+        }
+        100%{
+            height: 90%;
+            opacity: 1;
+        }
+    }
+
+    // 2번 차트 샘플 구현 /*///////////////////////////
+    .chart_box2{
+        max-width: 640px;
+        background: #4d43c4;
+        border-radius: 10px;
+        padding: 20px 10px;
+        .tit{
+            position: relative;
+            font-size: 34px;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 0 10px 45px;
+            color: #fff;
+            &::after{
+                content:"";
+                display: block;
+                position: absolute;
+                left: 10px;
+                top: 8px;
+                background: url("../../assets/chart/icon/ico_ranking.png") no-repeat 0 0;
+                width: 26px;
+                height: 22px;
+                background-size: 100% 100%;
+            }
+        }
+        .graph_wrap{
+            @include clearBoth();
+            margin: 30px 0;
+            .in_graph_list{
+                float: left;
+                margin: 0 5px;
+                text-align: center;
+                >p{
+                    font-size: 15px;
+                    color: #fff;
+                    margin-bottom: 10px;
+                }
+                .graph_con{
+                    position: relative;
+                    display:inline-block;
+                    width: 112px;
+                    height: 112px;
+                    border-radius: 50%;
+                    background: conic-gradient(#8b22ff 0% 0%,#dcdfe4 0% 100%);
+                    transition: 10s;
+                    p.ranking{
+                        background: #fff;
+                        display : inline-block;
+                        position: absolute;
+                        z-index: 40;
+                        top:50%; left:50%;
+                        width:100px;
+                        height:100px;
+                        border-radius: 50%;
+                        text-align:center; 
+                        font-size:14px;
+                        font-weight: bold;
+                        line-height: 24px;
+                        transform: translate(-50%, -50%);
+                        span{
+                            display: block;
+                            font-size:18px;
+                            font-weight: bold;
+                            padding-top: 32px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 3번 차트 샘플 구현 /*///////////////////////////
+    .chart_box3{
+        max-width: 640px;
+        background: #4d43c4;
+        border-radius: 10px;
+        padding: 30px;
+        .graph_tit{
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;  
+            margin-bottom: 30px;      
+        }
+        .graph{
+            position: relative;
+            background: #dcdfe4;
+            border-radius: 5px;
+            width: 300px;
+            height: 20px;
+            .bar1{
+                position: absolute;
+                left: -1px;
+                height: 20px;
+                border-radius: 5px 0 0 5px;
+                background: #2969ba;
+                z-index: 30;
+                width: 0;
+                transition: all 3s ease;
+            }
+            .bar2{
+                position: absolute;
+                left: -1px;
+                height: 20px;
+                border-radius: 5px;
+                background: #59c39b;
+                width: 0;
+                transition: all 2s ease;
+            }
+        }
+    }
+
+    // 4번 차트 샘플 구현 /*///////////////////////////
+    .chart_box4{
+        max-width: 640px;
+        background: #4d43c4;
+        border-radius: 10px;
+        padding: 30px 30px 100px;
+        .graph_tit{
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+
+        }
+        .graph_bar{
+            position: relative;
+            border-bottom: 3px solid #dddddd;   
+            @include clearBoth();
+            height: 200px;
+            .graph_bar_list{
+                position: relative;
+                float: left;
+                width: 40px;
+                height: 200px;
+                margin-left: 35px;
+                .stick{
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    bottom: 3px;
+                    width: 40px;
+                    height: 0;
+                    border-radius: 5px 5px 0 0;
+                    transition: all 1s ease-in-out;
+                    .percent{
+                        position: absolute;
+                        top: -20px;
+                        display: none;
+
+                    }
+                    .tolltip{
+                        display: none;
+                        position: absolute;
+                        top: -55px;
+                        left: 50%;
+                        z-index: 99;
+                        transform: translateX(-50%);
+                        color: #89e9f0;
+                        background: #000;
+                        border-radius: 5px;
+                        text-align: center;
+                        padding: 6px 10px 7px;
+                        white-space: nowrap;
+                        &::after{
+                            content: "▼";
+                            display: block;
+                            position: absolute;
+                            bottom: -9px;
+                            right: 20px;
+                            color: #000;
+                        }
+                    }
+                }
+                .bar_infro{
+                    position: absolute;
+                    bottom: -45px;
+                    left: -5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #fff;
+                    padding: 0 0 0 15px;
+                    white-space: nowrap;
+                    line-height: 18px;
+                    &::before{
+                        position: absolute;
+                        left: 0;
+                        top: 5px;
+                        content:"";
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        display: block;
+                    }
+                }
+                &.type1{
+                    .stick{
+                        background: #e22d72;
+                        .percent{
+                            color: #e22d72;
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #e22d72;
+                        }
+                    }
+                }
+                &.type2{
+                    .stick{
+                        background: #59c39b;
+                        .percent{
+                            color: #fff;
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #59c39b;
+                        }
+                    }
+                }
+                &.type3{
+                    .stick{
+                        background: #4791ff;
+                        .percent{
+                            color: #fff;
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #4791ff;
+                        }
+                    }
+                }
+                &.type4{
+                    .stick{
+                        background: #8a29ba;
+                        .percent{
+                            color: #fff;
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #8a29ba;
+                        }
+                    }
+                }
+            }
+            .graph_line{
+                display: none;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background: #e22d72;
+                height: 1px;
+                width: 0;
+                text-indent: -9999px;
+                transition: all 1s ease-in-out;
+            }
+        }
+    }
+}
+
+.test_flex_gauge {
+    display:flex;
+    padding: 0.24rem 0.08rem;
+    @include color(background-color, ln5);
+    .gauge_chart {
+        margin: 0 0.2rem;
+        flex-direction: row;
+
+    }
+}
+
+// (예 - MY vs 평균) 차트 또는 텍스트 스타일
+.horizon_chart_wrap {
+    margin-top: 0.32rem;
+    .tit {
+        margin-left: 0.55rem;
+        text-align: center;
+        span {
+            display: inline-block;
+            font-size: 0.16rem;
+            font-weight: 600;
+            @include color(color, tt2);
+            letter-spacing: 0.004rem;
+            &.round_circle {
+                position: relative;
+                width: 0.36rem;
+                height: 0.36rem;
+                padding: 0 0.41rem;
+                box-sizing: content-box;
+                z-index: 1;
+                & > em {
+                    display: block;
+                    position: relative;
+                    height: 0.36rem;
+                    border: 0.01rem solid;
+                    @include color(border-color, ln3);
+                    border-radius: 50%;
+                    font-style: normal;
+                    font-size: 0.12rem;
+                    font-weight: 700;
+                    line-height: 0.34rem;
+                    letter-spacing: 0.003rem;
+                    text-align: center;
+                    @include color(background-color, bg6);
+                }
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform:translate(-50%, -50%);
+                    width: 0.72rem;
+                    height: 0.01rem;
+                    @include color(background-color, ln3);
+                }
+            }
+        }
+    }
+
+    .chart {
+        position: relative;
+        margin-top: 0.12rem;
+        .grid_vertical {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0.49rem;
+            min-height: 0.1rem;
+            height: 100%;
+            span {
+                width: 0.01rem;
+                height: 100%;
+                @include color(background-color, bg4);
+            }
+        }
+        .graph_container {
+            position: relative;
+            height:.62rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            em {
+                display:flex;
+                align-items:center;
+                height:100%;
+                font-style: normal;
+                font-size: 0.12rem;
+                font-weight: 400;
+                @include color(color, tt3);
+                line-height: 0.16rem;
+                letter-spacing: -0.003rem;;
+            }
+            .graph_content {
+                position: absolute;
+                top: 0.12rem;
+                right: 0;
+                left: 0.49rem;
+                & > div {
+                    position: absolute; 
+                    width: 50%;
+                    min-height: 10px;
+                    p {
+                        margin-bottom: 0.04rem;
+                        padding: 0 0.05rem;
+                        font-size: 0.12rem;
+                        @include color(color, tt1);
+                        letter-spacing: -0.003rem;
+                    }
+                    span {
+                        position: relative;
+                        display: block;
+                        height: 0.12rem;
+                        width: 0%;
+                        transition: width 0.5s ease;
+                    }
+                }
+                .my_graph {
+                    right: 50%;
+                    p {
+                        text-align: right;
+                    }
+                    span {
+                        float: right;
+                        border-radius: 0.6rem 0 0 0.6rem;
+                        @include color(background-color, bg7);
+                    }
+                }
+                .average_graph {
+                    right: 0%;
+                    p {
+                        text-align: left;
+                        @include color(color, tt3);
+                    }
+                    span {
+                        float: left;
+                        border-radius: 0 0.6rem 0.6rem 0;
+                        @include color(background-color, bg1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+// 게이지 차트
+.gauge_chart {
+    position: relative;
+    width: 1.16rem;
+    height: 0.9rem;
+    & > div {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        &.inverse {
+            transform: rotateY(180deg);
+        }
+    }
+    .label_box {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        transition: all 0.5s;
+        width: 100%;
+        text-align: center;
+        &.active {
+            opacity: 1;
+        }
+        b {
+            display: block;
+            font-size: 0.2rem;
+            @include color(color, tt4);
+            line-height: 0.2rem;
+            letter-spacing: -0.005rem;
+            span {
+                font-size: 0.11rem;
+            }
+            &.fzSmall{
+                font-size: .18rem;
+            }
+        }
+        em {
+            display: block;
+            margin-bottom: 0.08rem;
+            font-size: 0.11rem;
+            font-style: normal;
+            @include color(color, tt1);
+            line-height: 0.12rem;
+            letter-spacing: -0.0028rem;
+        }
+    }
+}
+
+
+// circular chart
+.circular-chart_wrap {
+    position: relative;
+    .circular-chart {
+        display: block;
+        width: 0.42rem;
+        height: 0.42rem;
+    }
+      
+    .circle-bg {
+        fill: none;
+        @include color(stroke, bg3);
+        stroke-width: 2.8;
+      }
+      
+      .circle {
+        fill: none;
+        stroke-width: 4;
+        stroke-linecap: round;
+        animation: CircularProgress 1s ease-out forwards;
+      }
+      
+      .circular-chart.point_color .circle {
+        @include color(stroke, inc1);
+      }
+      
+    .percentage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.12rem;
+        font-weight: 600;
+        @include color(color, inc1);
+        letter-spacing: -0.006rem;
+        &.zero {
+            @include color(color, tt5);
+        }
+    }
+}
+
+// 매수/매도 라인 차트
+.line_chart {
+    svg {
+        overflow: visible !important;
+    }
+    .highcharts-plot-background {
+        fill:black;
+        @include color(fill,bg6)
+    }
+    .highcharts-scrolling {
+        .highcharts-inner-container {
+            .highcharts-container {
+                z-index: auto !important;
+                .highcharts-background{
+                    @include color(fill,bg5)
+                }
+            }
+        }
+    }
+    .highcharts-plot-line-label {
+        &.highcharts-credits {
+            width: auto !important;
+            z-index: 2;
+            .yaxis_label {
+                width: 65px;
+                padding-right: 8px;
+                font-size: 10px;
+                text-align: right;
+                @include color(color, tt6);
+                line-height: 16px;
+                @include color(background-color, inc1);
+                z-index: 97;
+            }
+            &.sell {
+                .yaxis_label {
+                    @include color(background-color, dec1);
+                }
+            }
+        }
+        &.xaxis_label_box {
+            z-index: 2;
+            .xaxis_label {
+                width: 55px;
+                height: 100%;
+                font-size: 10px;
+                text-align: center;
+                @include color(color, tt6);
+                line-height: 30px;
+                @include color(background-color, bg8);
+                z-index: 97;
+            }
+        }
+    }
+    .highcharts-scrolling-parent{
+        .highcharts-fixed{
+            .highcharts-scrollable-mask{
+                @include color(fill,bg5)
+            }
+        }
+    }
+}
+
+// 라인차트 area 다크 모드 없음
+body.dark{
+    .highcharts-series{
+        .highcharts-area{
+            fill: none;
+        }
+    }
+}
+
+
+
+// 매수/매도 라인 차트에 사용될 지표
+.close_price_box {
+    display: flex;
+    visibility: hidden;
+    padding: 8px 6px;
+    border: 1px solid;
+    @include color(border-color, bg8);
+    @include color(background-color, alpha99);
+    & > span {
+        display: flex;
+        font-size: 11px;
+        @include color(color, tt1);
+        &:first-child {
+            flex-grow: 1;
+        }
+    }
+}
+
+// column 차트(my vs 키움 보유자평균)
+.column_vs_chart {
+    position: relative;
+    padding-bottom: 0.15rem;
+    margin: 0 0.16rem;
+    height: 1.3rem;
+    &.cross_wrap {
+        height: 1.85rem;
+    }
+    &.up_all_wrap {
+        .middle_line {
+            top: 60%;    
+        }    
+    }
+    &.down_all_wrap {
+        .middle_line {
+            top: 20%;    
+        }    
+    }
+    .middle_line {
+        position: absolute;
+        top: calc(50% - 0.15rem);
+        right: 0;
+        left: 0;
+        height: 0.01rem;
+        hr {
+            border-top: dashed 0.01rem;
+            @include color(border-color, bg1);
+        }
+        .column_vs_container {
+            display: flex;
+            margin: 0 0.17rem;
+            & > .column_box {
+                flex-direction: row;
+                flex-grow: 1;
+                &.content {
+                    flex-grow: 0;
+                    width: 0.72rem;
+                    .bar_wrap {
+                        position: absolute;
+                        width: 0.72rem;
+                        text-align: center;
+                        
+                        .txt {
+                            position: absolute;
+                            // margin: 0 0.04rem;
+                            width: 100%;
+                            b, span {
+                                display: block;
+                                font-size: 0.13rem;
+                                line-height: 0.15rem;
+                                letter-spacing: -0.0033rem;
+                            }
+                        }
+                        .bar {
+                            display: block;
+                            position: absolute;
+                            left: 0.04rem;
+                            right: 0.04rem;
+                            height: calc(100% - 0.31rem);
+                        }
+                        &.up {
+                            padding-top: 0.32rem;
+                            top: -0.32rem;
+                            bottom: 0;
+                            transition: top 0.5s;
+                            .txt {
+                                top: 0;
+                            }
+                            &.kiwoom {
+                                .txt {
+                                    @include color(color, tt3);
+                                }
+                                .bar {
+                                    @include color(border-color, ln1);
+                                    @include color(background-color, bg4);
+                                }
+                            }
+                            .bar {
+                                bottom: 0;
+                                border-top: 0.02rem solid;
+                                @include color(border-color, inc1);
+                                @include color(background-color, inc3);
+                            }
+                        }
+                        &.down {
+                            top: 0.01rem;
+                            bottom: 0.01rem;
+                            padding-bottom: 0.32rem;
+                            transition: bottom 0.5s;
+                            .txt {
+                                bottom: 0;
+                            }
+                            &.kiwoom {
+                                .txt {
+                                    @include color(color, tt3);
+                                }
+                                .bar {
+                                    @include color(border-color, ln1);
+                                    @include color(background-color, bg4);
+                                }
+                            }
+                            .bar {
+                                border-bottom: 0.02rem solid;
+                                @include color(border-color, dec1);
+                                @include color(background-color, dec3);
+                            }
+                        }
+                    }
+                }
+                .closing_price_box {
+                    position: absolute;
+                    left: 50%;
+                    padding: 0.06rem 0;
+                    min-width: 0.82rem;
+                    border: 0.01rem solid #707070;
+                    border-radius: 0.08rem;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    @include color(background-color, bg6);
+                    // @include color(color, )
+                    span, b {
+                        display: block;
+                    }
+                    span {
+                        margin-bottom: 0.02rem;
+                        font-size: 0.11rem;
+                        line-height: 0.14rem;
+                        letter-spacing: -0.0028rem;
+                    }
+                    b {
+                        font-size: 0.13rem;
+                        line-height: 0.17rem;
+                        letter-spacing: -0.0033rem;
+                    }
+                }
+            }
+        }
+    }
+    .label_box {
+        display: flex;
+        position: absolute;
+        right: 0.17rem;
+        bottom: 0;
+        left: 0.17rem;
+        li {
+            flex-direction: row;
+            font-size: 0.11rem;
+            line-height: 0.15rem;
+            letter-spacing: -0.0028rem;
+            text-align: center;
+
+            &.txt_column_label {
+                width: 0.72rem;
+                font-weight: 600;
+                @include color(color, tt2);
+            }
+            &.txt_vs {
+                flex-grow: 1;
+                font-weight: 700;
+                font-size: 0.12rem;
+                line-height: 0.15rem;
+                letter-spacing: -0.003rem;
+                @include color(color, tt5);
+            }
+        }
+    }
+}
+
+// (예 - MY vs 평균) 차트 또는 텍스트 스타일
+.horizon_chart_wrap {
+    margin-top: 0.32rem;
+    .tit {
+        margin-left: 0.55rem;
+        text-align: center;
+        span {
+            display: inline-block;
+            font-size: 0.16rem;
+            font-weight: 600;
+            @include color(color, tt2);
+            letter-spacing: 0.004rem;
+            &.round_circle {
+                position: relative;
+                width: 0.36rem;
+                height: 0.36rem;
+                padding: 0 0.41rem;
+                box-sizing: content-box;
+                z-index: 1;
+                & > em {
+                    display: block;
+                    position: relative;
+                    height: 0.36rem;
+                    border: 0.01rem solid;
+                    @include color(border-color, ln3);
+                    border-radius: 50%;
+                    font-style: normal;
+                    font-size: 0.12rem;
+                    font-weight: 700;
+                    line-height: 0.34rem;
+                    letter-spacing: 0.003rem;
+                    text-align: center;
+                    @include color(background-color, bg6);
+                }
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform:translate(-50%, -50%);
+                    width: 0.72rem;
+                    height: 0.01rem;
+                    @include color(background-color, ln3);
+                }
+            }
+        }
+    }
+
+    .chart {
+        position: relative;
+        margin-top: 0.12rem;
+        .grid_vertical {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0.49rem;
+            min-height: 0.1rem;
+            height: 100%;
+            span {
+                width: 0.01rem;
+                height: 100%;
+                @include color(background-color, bg4);
+            }
+        }
+        .graph_container {
+            position: relative;
+            height:.62rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            em {
+                display:flex;
+                align-items:center;
+                height:100%;
+                font-style: normal;
+                font-size: 0.12rem;
+                font-weight: 400;
+                @include color(color, tt3);
+                line-height: 0.16rem;
+                letter-spacing: -0.003rem;;
+            }
+            .graph_content {
+                position: absolute;
+                top: 0.12rem;
+                right: 0;
+                left: 0.49rem;
+                & > div {
+                    position: absolute; 
+                    width: 50%;
+                    min-height: 10px;
+                    p {
+                        margin-bottom: 0.04rem;
+                        padding: 0 0.05rem;
+                        font-size: 0.12rem;
+                        @include color(color, tt1);
+                        letter-spacing: -0.003rem;
+                    }
+                    span {
+                        position: relative;
+                        display: block;
+                        height: 0.12rem;
+                        width: 0%;
+                        transition: width 0.5s ease;
+                    }
+                }
+                .my_graph {
+                    right: 50%;
+                    p {
+                        text-align: right;
+                    }
+                    span {
+                        float: right;
+                        border-radius: 0.6rem 0 0 0.6rem;
+                        @include color(background-color, bg7);
+                    }
+                }
+                .average_graph {
+                    right: 0%;
+                    p {
+                        text-align: left;
+                        @include color(color, tt3);
+                    }
+                    span {
+                        float: left;
+                        border-radius: 0 0.6rem 0.6rem 0;
+                        @include color(background-color, bg1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 수평 바 매수/매도 비교 차트?
+.buy_sell_horizon_bar {
+    .label {
+        display: flex;
+        margin: 0.32rem 0 0.08rem;
+        p {
+            flex-direction: row;
+            flex-grow: 1;
+            @include font(11);
+            font-weight: 500;
+            &.down {
+                text-align: right;
+            }
+
+            > span {
+                display:inline-block;
+                @include font(11);
+                font-weight: 500;
+            }
+        }
+    }
+    .horizon_bar {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.1rem;
+        height: 0.08rem;
+        @include color(background-color, dec1);
+        
+        .buy {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            transition: width 0.5s;
+            @include color(background-color, inc1);
+        }
+    }
+}

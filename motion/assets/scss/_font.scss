@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+//webfont
+// eot : iE8 이하브라우저 웹폰트 사용시
+// otf : 마이크로소프트 컴퓨터 글꼴 형식
+// woff : W3C에서 추천하는 글꼴 형식
+// woff2 : WOFF에서 향상된 글꼴
+// svg : 벡터방식의 글꼴형식 (IE ,FF 지원안함) 
+// svg : TTF에 2배 , WOFF 3배 용량
+// ttf : 애플에서 개발한 글꼴 형식
+// 현시점에선 woff 랑 woff2 사용하면 된다.
+// 폰트변환 : https://convertio.co/kr/download/dac3f4389b9068bfb1866d5cc35b354c972265/
+// 폰트변환 : https://onlinefontconverter.com/
+
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo';
+  font-weight: 200;
+  src: local("SpoqaHanSansNeo"), url("../../assets/fonts/SpoqaHanSansNeo-Thin.eot") format("eot"), url("../../assets/fonts/SpoqaHanSansNeo-Thin.woff2") format("woff2"), url("../../assets/fonts/SpoqaHanSansNeo-Thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo';
+  font-weight: 300;
+  src: local("SpoqaHanSansNeo"), url("../../assets/fonts/SpoqaHanSansNeo-Light.eot") format("eot"), url("../../assets/fonts/SpoqaHanSansNeo-Light.woff2") format("woff2"), url("../../assets/fonts/SpoqaHanSansNeo-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo';
+  font-weight: 400;
+  src: local("SpoqaHanSansNeo"), url("../../assets/fonts/SpoqaHanSansNeo-Regular.eot") format("eot"), url("../../assets/fonts/SpoqaHanSansNeo-Regular.woff2") format("woff2"), url("../../assets/fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo';
+  font-weight: 600;
+  src: local("NotoSans"), url("../../assets/fonts/SpoqaHanSansNeo-Medium.eot") format("eot"), url("../../assets/fonts/SpoqaHanSansNeo-Medium.woff2") format("woff2"), url("../../assets/fonts/SpoqaHanSansNeo-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo';
+  font-weight: 700;
+  src: local("NotoSans"), url("../../assets/fonts/SpoqaHanSansNeo-Bold.eot") format("eot"), url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff2") format("woff2"), url("../../assets/fonts/SpoqaHanSansNeo-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Anton';
+  font-weight: 300;
+  src: local("Anton"),  url("../../assets/fonts/Anton-Regular.ttf") format("truetype");
+}
+
+
+ 

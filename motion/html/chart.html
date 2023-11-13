@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차트 샘플</title>
+    <link rel="stylesheet" href="../assets/css/default.css"/>
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <style>
+        h2 {width:100%; padding:.25rem .16rem 0; font-size:.4rem; font-weight:700;}
+        .common_guide {width:100%; padding:.1rem .16rem;}
+        h3 {margin-bottom:.1rem; font-size:.2rem; font-weight:700;}
+        h3 > span {display:block; font-size:.13rem; font-weight:600;}
+        h3 ~ h3 {margin-top:.15rem;}
+        strong {display:block; margin:.3rem 0 .1rem; font-size:.14rem; font-weight:600;}
+        .group + .group {margin-top:.05rem;}
+    </style>
+</head>
+<body>
+    <ul class="thema_infor pageIn">
+        <li>Light</li>
+        <li>Mint</li>
+        <li>Classic</li>
+        <li>Dark</li>
+    </ul>
+    <h2>Chart Sample</h2>
+    <div class="chart_wrap common_guide">
+        <h3 class="m-t-30">상위/수익률 컬럼 차트</h3>
+        <div class="chart_box1" style="border:1px solid #4d43c4">
+            <div class="my_chart">
+                <button type="button" onclick="testLoadBarChart()" style="background-color: rgb(9, 63, 32); border-radius: 10px; color:#fff; padding: .05rem;">차트 ReStart</button>
+                <div id="chartType2"></div>
+            </div>
+        </div>
+        
+        <h3 class="m-t-30">my vs 평균 수평 바 차트</h3>
+        <div class="chart_box1" style="border:1px solid #4d43c4">
+            <button type="button" onclick="chartRestart1()" style="background-color: rgb(9, 63, 32); border-radius: 10px; color:#fff; padding: .05rem;">차트 ReStart</button>
+            <div class="horizon_chart_wrap">
+                <div class="tit">
+                    <span>MY</span>
+                    <span class="round_circle">
+                        <em>VS</em>
+                    </span>
+                    <span>평균</span>
+                </div>
+                <div class="chart">
+                    <div class="grid_vertical">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="graph_container">
+                        <em>
+                            전월말<br/>
+                            자산평균
+                        </em>
+                        <div class="graph_content">
+                            <div class="my_graph">
+                                <p>38,082,190원</p>
+                                <span></span>
+                            </div>
+                            <div class="average_graph">
+                                <p>20,932,290원</p>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph_container">
+                        <em>
+                            보유<br/>
+                            종목수
+                        </em>
+                        <div class="graph_content">
+                            <div class="my_graph">
+                                <p>10개</p>
+                                <span></span>
+                            </div>
+                            <div class="average_graph">
+                                <p>12개</p>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph_container">
+                        <em>
+                            거래<br/>
+                            종목수
+                        </em>
+                        <div class="graph_content">
+                            <div class="my_graph">
+                                <p>8개</p>
+                                <span></span>
+                            </div>
+                            <div class="average_graph">
+                                <p>16개</p>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h3 class="m-t-30">전일수익/누적수익 게이지 차트</h3>
+        <div class="chart_box1" style="border:1px solid #4d43c4">
+            <button type="button" onclick="chartRestart2()" style="background-color: rgb(9, 63, 32); border-radius: 10px; color:#fff; padding: .05rem;">차트 ReStart</button>
+            <div class="test_flex_gauge">
+                <div class="gauge_chart test_gauge_chart">
+                    <div class="inverse" id="gaugeChartReverseHalf"></div>
+                    <div id="gaugeChartHalf"></div>
+                    <p class="label_box">
+                        <b><span>%</span></b>
+                        <em>전일수익</em>
+                    </p>
+                </div>
+                <div class="gauge_chart test_gauge_chart2">
+                    <div class="inverse" id="gaugeChartReverseHalf2"></div>
+                    <div id="gaugeChartHalf2"></div>
+                    <p class="label_box">
+                        <b><span>%</span></b>
+                        <em>누적수익</em>
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        <h3 class="m-t-30">my vs 키움 보유자평균 수직 막대 차트</h3>
+        <div class="chart_box1" style="border:1px solid #4d43c4">
+            <button type="button" onclick="chartRestart3()" style="background-color: rgb(9, 63, 32); border-radius: 10px; color:#fff; padding: .05rem;">차트 ReStart</button>
+            <div class="column_vs_chart" id="vsChart1">
+                <div class="middle_line">
+                    <hr/>
+                    <div class="column_vs_container">
+                        
+                        <div class="column_box content">
+                            <div class="bar_wrap my">
+                                <p class="txt">
+
+                                </p>
+                                <span class="bar"></span>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="column_box">
+                            <div class="closing_price_box">
+                                <span>전영업일 종가</span>
+                                <b>0원</b>
+                            </div>
+                        </div>
+
+                        <div class="column_box content">
+                            <div class="bar_wrap kiwoom">
+                                <p class="txt">
+
+                                </p>
+                                <span class="bar"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <ul class="label_box">
+                    <li class="txt_column_label">MY</li>
+                    <li class="txt_vs">VS</li>
+                    <li class="txt_column_label">키움 보유자평균</li>
+                </ul>
+            </div>
+
+            <div class="column_vs_chart" id="vsChart2">
+                <div class="middle_line">
+                    <hr/>
+                    <div class="column_vs_container">
+                        
+                        <div class="column_box content">
+                            <div class="bar_wrap my">
+                                <p class="txt">
+
+                                </p>
+                                <span class="bar"></span>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="column_box">
+                            <div class="closing_price_box">
+                                <span>전영업일 종가</span>
+                                <b>0원</b>
+                            </div>
+                        </div>
+
+                        <div class="column_box content">
+                            <div class="bar_wrap kiwoom">
+                                <p class="txt">
+
+                                </p>
+                                <span class="bar"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <ul class="label_box">
+                    <li class="txt_column_label">MY</li>
+                    <li class="txt_vs">VS</li>
+                    <li class="txt_column_label">키움 보유자평균</li>
+                </ul>
+            </div>
+
+            <div class="column_vs_chart" id="vsChart3">
+                <div class="middle_line">
+                    <hr/>
+                    <div class="column_vs_container">
+                        
+                        <div class="column_box content">
+                            <div class="bar_wrap my">
+                                <p class="txt">
+
+                                </p>
+                                <span class="bar"></span>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="column_box">
+                            <div class="closing_price_box">
+                                <span>전영업일 종가</span>
+                                <b>0원</b>
+                            </div>
+                        </div>
+
+                        <div class="column_box content">
+                            <div class="bar_wrap kiwoom">
+                                <p class="txt">
+
+                                </p>
+                                <span class="bar"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <ul class="label_box">
+                    <li class="txt_column_label">MY</li>
+                    <li class="txt_vs">VS</li>
+                    <li class="txt_column_label">키움 보유자평균</li>
+                </ul>
+            </div>            
+        </div>        
+        <h3 class="m-t-30">매수/매도 합계 비교 수평 바 차트</h3>
+        <div class="chart_box1" style="border:1px solid #4d43c4">
+            <button type="button" onclick="chartRestart4()" style="background-color: rgb(9, 63, 32); border-radius: 10px; color:#fff; padding: .05rem;">차트 ReStart</button>
+            <div class="buy_sell_horizon_bar">
+                <div class="label">
+                    <p class="up">매수 합계 <span></span>주</p>
+                    <p class="down">매도 합계 <span></span>주</p>
+                </div>
+                <div class="horizon_bar">
+                    <span class="buy"></span>
+                </div>
+            </div>
+        </div>
+        <h3>산 차트</h3>
+        <div class="chart_box1">
+            <div class="chart_cont">
+                <button type="button" onclick="chartRestart5()" style="background-color: rgb(9, 63, 32); border-radius: 10px; color:#fff; padding: .05rem;">차트 ReStart</button>
+                <div class="my_infor">
+                    <p class="user_name">
+                        전설의 지존 6874
+                    </p>
+                    <p class="user_ranking">4월 리그현재랭킹 <span>(참가자 18,000명)</span></p>
+                    <p class="league">
+                        <a href="javascript:alert('리그이동')">리그 상세보기</a>
+                    </p>
+                    <div class="state_infor">
+                        <div class="st_bn">1억 클럽 참여중</div>
+                        <div class="st_rk">
+                            <div class="inner_rk1">
+                                45위
+                            </div>
+                            <div class="inner_rk2">
+                                전위대비 8
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my_chart">
+                    <div id="chartType1"></div>
+                    <div class="my_graph type1">
+                        <span class="point"></span>
+                        <div class="graph_pt"></div>
+                        <div class="tolltip">상위 5%</div>
+                    </div>
+                    <div class="my_graph type2">
+                        <span class="point"></span>
+                        <div class="graph_pt"></div>
+                    </div>
+                    <div class="my_graph type3">
+                        <span class="point"></span>
+                        <div class="graph_pt"></div>
+                    </div>
+                    <div class="my_graph type4">
+                        <span class="point"></span>
+                        <div class="graph_pt"></div>
+                    </div>
+                </div>
+                <ul class="menu">
+                    <li class="type1">내수익률</li>
+                    <li class="type2">평균수익률</li>
+                    <li class="type3">코스닥지수</li>
+                    <li class="type4">코스피지수</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+
+    
+    <!-- 기본 script js -->
+    <script src="../assets/js/lib/lodash.js"></script>
+    <script src="../assets/js/lib/moment.min.js"></script>
+    <script src="../assets/js/lib/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/lib/swiper-bundle.min.js"></script>
+    <script src="../assets/js/lib/popper.min.js"></script>
+    <script src="../assets/js/lib/tippy-bundle.umd.min.js"></script>
+
+    <!-- 하이차트 -->
+    <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+    
+    <script src="../assets/chart/highchart/code/highstock.js"></script>
+    <script src="../assets/chart/highchart/code/modules/data.js"></script>
+    <script src="../assets/chart/highchart/code/modules/exporting.js"></script>
+    <script src="../assets/chart/highchart/code/modules/export-data.js"></script>
+
+    <script src="../assets/chart/highchart/code/highcharts-more.js"></script>
+    <script src="../assets/chart/highchart/code/modules/solid-gauge.js"></script>
+    
+    <script src="../assets/js/dist/resize.js"></script>
+    <script src="../assets/js/dist/common.js"></script>
+    <script type="text/javascript">        
+ // 차트 5번
+ function randomNumber() {
+            return Math.floor(Math.random() * 50);
+        }
+        function randomMyInfo() {
+            return Math.floor(Math.random() * 31);
+        }
+        function randomHundred() {
+            return Math.floor(Math.random() * 100);
+        }
+        
+        function testLoadBarChart() {
+            var bar = columnChart('chartType2');
+            var isDark = (document.body.getAttribute('class') || '').indexOf('dark') > -1;
+
+            var inc2 = isDark ? '#482431' : '#FEE4ED';
+            var inc3 = isDark ? '#522B39' : '#FFEEF4';
+            var dec2 = isDark ? '#262A43' : '#E5EBFC';
+            var dec3 = isDark ? '#2F3557' : '#EEF2FF';
+            var pointColor = isDark ? '#7664ff' : '#4f3fc6';
+            var barData = [];
+
+            var testIdx = 0;
+            var myIndex = randomMyInfo();
+            // 비동기 통신 후 바인딩
+            for (var i = -36; i <= 36; i = (i + 2)) {
+                
+                var dataObj = {
+                    x: i,
+                    y: randomNumber(),
+                    color: '#ffffff'
+                };
+                
+                if (testIdx === myIndex) {
+                    dataObj.color = pointColor
+                } else if (i < 0) { // i가 0보다 작을 경우
+                    if (testIdx%2 === 0) {
+                        dataObj.color = dec3
+                    } else {
+                        dataObj.color = dec2
+                    }
+                } else {
+                    if (testIdx%2 === 0) {
+                        dataObj.color = inc3
+                    } else {
+                        dataObj.color = inc2
+                    }
+                }
+
+                barData.push(dataObj)
+                testIdx++; // api 연결 시 삭제
+            }
+            
+            bar.series[0].setData(barData);
+            bar.tooltip.refresh(bar.series[0].points[myIndex]);
+            // console.log(bar)
+            // bar.chart.events.load = function () {
+            //     console.log('123')
+            // }
+        }
+        testLoadBarChart();
+
+        // 차트 6번
+        function chartRestart1(){
+            var isShowHorizonChart = false;
+            if (!isShowHorizonChart) {
+                isShowHorizonChart = true;
+                setTimeout(function () {
+                    $(".my_graph").each(function () {
+                        var currnetElement = $(this).children('span');
+                        currnetElement.css({
+                            width: randomHundred() + '%'
+                        })
+                    });
+                    $(".average_graph").each(function () {
+                        var currnetElement = $(this).children('span');
+                        currnetElement.css({
+                            width: randomHundred() + '%'
+                        })
+                    });
+                }, 500);
+            }
+        }
+        // 4
+        new GaugeChart().init(8.98, 'gaugeChartReverseHalf', 'gaugeChartHalf', '.test_gauge_chart');
+        new GaugeChart().init(-99, 'gaugeChartReverseHalf2', 'gaugeChartHalf2', '.test_gauge_chart2');
+        function chartRestart2(){
+            let ran1 = Math.random()*(100-(-100))+(-100), // 난수 -100 ~ 100
+            ran2 = Math.random()*(100-(-100))+(-100);
+            GaugeChart.prototype.init(Number(ran1.toFixed(2)), 'gaugeChartReverseHalf', 'gaugeChartHalf', '.test_gauge_chart');
+            GaugeChart.prototype.init(Number(ran2.toFixed(2)), 'gaugeChartReverseHalf2', 'gaugeChartHalf2', '.test_gauge_chart2');
+        }
+        chartRestart3();
+        var barChange=true;
+        function chartRestart3(){
+            var closingPrice = 400000
+            if(barChange){
+                barChange = false
+                var myPrice = 300000
+                var kiwoomPrice = 450000
+                var myPrice2 = 350000
+                var kiwoomPrice2 = 300000
+                var myPrice3 = 600000
+                var kiwoomPrice3 = 700000
+            }else{
+                barChange = true
+                var myPrice = 250000
+                var kiwoomPrice = 500000
+                var myPrice2 = 380000
+                var kiwoomPrice2 = 350000
+                var myPrice3 = 650000
+                var kiwoomPrice3 = 580000
+            }          
+            function percentNumber(price, closing) {
+                return price / closing > 1 ? ((price / closing * -1) + 1) * 100 : ((closing / price - 1) * 100).toFixed(2);
+            }
+            setTimeout(function() {
+                columnVsChart('#vsChart1', {
+                    my: {
+                        percent: percentNumber(myPrice, closingPrice),
+                        price: myPrice
+                    },
+                    closing: closingPrice,
+                    kiwoom: {
+                        percent: percentNumber(kiwoomPrice, closingPrice),
+                        price: kiwoomPrice
+                    }
+                });
+            }, 100);
+            
+
+            setTimeout(function() {
+                columnVsChart('#vsChart2', {
+                    my: {
+                        percent: percentNumber(myPrice2, closingPrice),
+                        price: myPrice2
+                    },
+                    closing: closingPrice,
+                    kiwoom: {
+                        percent: percentNumber(kiwoomPrice2, closingPrice),
+                        price: kiwoomPrice2
+                    }
+                });
+            }, 100);
+
+
+            setTimeout(function() {
+                columnVsChart('#vsChart3', {
+                    my: {
+                        percent: percentNumber(myPrice3, closingPrice),
+                        price: myPrice3
+                    },
+                    closing: closingPrice,
+                    kiwoom: {
+                        percent: percentNumber(kiwoomPrice3, closingPrice),
+                        price: kiwoomPrice3
+                    }
+                });
+            }, 100);
+        }
+        chartRestart4();
+        function chartRestart4(){
+            horizonEqualBarChart((Math.random ()*(1000 - 100) ) + 100, (Math.random ()*(1000 - 100))+100, $('.buy_sell_horizon_bar'));
+        }
+
+
+
+        chartRestart5();
+        function chartRestart5(){
+            Highcharts.chart('chartType1', {
+                colors: ["#89e9f0", "#ff3301"],
+                chart: {
+                    type: 'area',
+                    backgroundColor : null,// 백그라운드 없애기
+                    events :{
+                        load: function () {
+                            $('#chartType1').find('svg').addClass('active');
+                        },
+                    },
+                },
+                title: {
+                    text: null
+                },
+                subtitle: {
+                    text: null
+                },
+                exporting: { enabled: false }, // 심볼 없애기
+                xAxis: {
+                    allowDecimals: false,
+                    title :{
+                        text : null
+                    },
+                    labels: {
+                        enabled:false,
+                    },
+                    visible : false // 라인선 없애기
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        enabled: false//label 미사용 시 false로 지정.
+                    },
+                    visible : false // 라인선 없애기
+                },
+                tooltip: {
+                    pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                },
+                plotOptions: {
+                    area: {
+                        pointStart: -50,
+                        marker: {
+                            enabled: false,
+                            symbol: 'circle',
+                            radius: 2,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                credits: {
+                    enabled: false  // 크레딧제거
+                },
+                legend: {
+                    enabled: false,   // 범례제거
+                },
+                series: [{
+                    name: 'USA',
+                    fillColor : {
+                        linearGradient : [0, 0, 0, 190],
+                        stops : [
+                        [0, '#89e9f0'],
+                        [1, '#4d43c4']
+                        ],
+                        opacity:1
+                    },
+                    animation:{ // 애니메이션 상하가 불가능
+                        defer:0, //대기시간
+                        duration:0, // 지속시간
+                        // easing: easeOutBounce, //모션효과
+                    },
+                    data: [
+                        null, null, null, null, null, 6, 11, 32, 110, 235,
+                        369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
+                        20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
+                        26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
+                        24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
+                        21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
+                        10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
+                        5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
+                    ],
+                    lineWidth : 0,
+                    crisp : true,
+                    
+                }]
+            });
+        }
+        // 차트 1 효과
+        $('.menu li').on('click',function(){
+            var idx = $('.menu li').index(this);
+            $('.my_graph').eq(idx).toggle();
+            $('.menu li').eq(idx).toggleClass('active');
+        })
+
+
+       // init 시작
+        chartRestart1();
+    </script>
+</body>
+</html>

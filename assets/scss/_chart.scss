@@ -1,0 +1,627 @@
+// 1번 차트 샘플 구현 /*///////////////////////////
+.chart_wrap {
+    .chart_box1{
+        position: relative;
+        max-width: 640px;
+        .chart_tab{
+            ul{
+                @include clearBoth();
+                li{
+                    position: relative;
+                    float: left;
+                    color: #fff;
+                    font-weight: bold;
+                    font-size: 12px;
+                    width: 80px;
+                    height: 30px;
+                    box-sizing: border-box;
+                    padding-top: 10px;
+                    background: #8888ef;
+                    text-align: center;
+                    border-radius: 10px 20px 0 0;
+                    cursor: pointer;
+                    &.active{
+                        background: #4d43c4;
+                    }
+                }
+            }
+        }
+        .chart_cont{
+            position: relative;
+            background: #4d43c4;
+            border-radius: 0 10px 10px 10px;
+            color: #fff;
+            padding-bottom: 50px;
+            .my_infor{
+                padding: 20px;
+                position: relative;
+                .user_name{
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #fff;
+                    margin-bottom: 10px;
+                    span{
+                        cursor: pointer;
+                        img{
+                            width: 20px;
+                            height: 20px;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+                .user_ranking{
+                    font-size: 16px;
+                    color: rgba(255,255,255,.7);
+                    letter-spacing: -2px;
+                    margin-bottom: 10px;
+                    span{
+                        font-size: 12px;
+                    }
+                }
+                .league{
+                    margin-bottom: 10px;
+                    a{
+                        position: relative;
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #fff;
+                        &::after{
+                            content:"";
+                            display: block;
+                            position: absolute;
+                            right: -14px;
+                            top: 7px;
+                            background: url("../../assets/chart/icon/ico_arr_down.png") no-repeat 0 0;
+                            width: 9px;
+                            height: 5px;
+                            background-size: 100% 100%;
+                            transform: rotate(-90deg);
+                        }
+                    }
+                }
+                // 실시간 랭킹
+                .state_infor{
+                    position: absolute;
+                    right: 20px;
+                    top: 20px;
+                    .st_bn{
+                        text-align: center;
+                        font-weight: bold;
+                        color: #ffc97e;
+                        border: 1px solid #ffc97e;
+                        border-radius: 5px;
+                        font-size: 12px;
+                        padding: 4px 7px 5px;
+                    }
+                    .st_rk{
+                        text-align: right;
+                        margin: 10px 0 10px;
+                        .inner_rk1{
+                            position: relative;
+                            font-size: 34px;
+                            font-weight: bold;
+                            color: #fff;
+                            &::after{
+                                content:"";
+                                display: block;
+                                position: absolute;
+                                left: -16px;
+                                top: 7px; 
+                                background: url("../../assets/chart/icon/ico_ranking.png") no-repeat 0 0;
+                                width: 26px;
+                                height: 22px;
+                                background-size: 100% 100%;
+                            }
+                        }
+                        .inner_rk2{
+                            position: relative;
+                            font-size: 14px;
+                            font-weight: bold;
+                            color: #fff;
+                            margin: 7px 20px 0 0;
+                            padding-right: 5px;
+                            &::after{
+                                content: "";
+                                display: block;
+                                position: absolute;
+                                right: -18px;
+                                top: 2px;
+                                background: url('../../assets/chart/icon/ico_arr_down2.png') no-repeat 0 0;
+                                width: 16px;
+                                height: 12px;
+                                background-size: 100% 100%;
+                                transform: rotate(180deg);
+                            }
+                        }
+                    }
+                }
+            }
+            .my_chart{
+                position: relative;
+                overflow: hidden;
+                height: 150px;
+                .my_graph{
+                    display: none;
+                    position: absolute;
+                    left: 200px;
+                    bottom:0;
+                    height: 111px; // 값을 받아온다
+                    .point{
+                        display: block;
+                        border-radius: 10px;
+                        width: 10px;
+                        height: 10px;
+                        background-color: #e10000fc;
+                        opacity: 0;
+                        animation: pointEffect 1.5s 0s ease-in-out infinite forwards;
+                    }
+                    .graph_pt{
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        bottom: 0;
+                        width: 1px;
+                        height: 100%;
+                        border: 1px dashed #e10000fc;
+                        opacity: 0;
+                        animation: pointLine 2s 0s linear infinite forwards;
+                    }
+                    &.type2{
+                        left: 130px;
+                        height: 148px;
+                        .point{
+                            background-color: #c1e212;
+                        }
+                        .graph_pt{
+                            border-color: #c1e212;
+                            animation: pointLine 2s 0s linear infinite forwards;
+                        }
+                    }
+                    &.type3{
+                        left: 280px;
+                        height: 56px;
+                        .point{
+                            background-color: #4791ff;
+                        }
+                        .graph_pt{
+                            border-color: #4791ff;
+                            animation: pointLine 2s 0s linear infinite forwards;
+                        }
+                    }
+                    &.type4{
+                        left: 172px;
+                        height: 133px;
+                        .point{
+                            background-color: #02bc77;
+                        }
+                        .graph_pt{
+                            border-color: #02bc77;
+                            animation: pointLine 2s 0s linear infinite forwards;
+                        }
+                    }
+                    .tolltip{
+                        position: absolute;
+                        top: -39px;
+                        left: 50%;
+                        z-index: 99;
+                        transform: translateX(-50%);
+                        color: #89e9f0;
+                        background: #000;
+                        border-radius: 5px;
+                        text-align: center;
+                        padding: 6px 10px 7px;
+                        white-space: nowrap;
+                        &::after{
+                            content: "▼";
+                            display: block;
+                            position: absolute;
+                            bottom: -9px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            color: #000;
+                        }
+
+                    }
+                }
+            }
+            .menu{
+                position: absolute;
+                bottom: 25px;
+                text-align: center;
+                width: 100%;
+                li{
+                    position: relative;
+                    display: inline-block;
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: #fff;
+                    margin-right: 10px;
+                    padding-left: 12px;
+                    cursor: pointer;
+                    &::before{
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        display: block;
+                        content:"";
+                        background: #000;
+                        border-radius: 10px;
+                        width: 8px;
+                        height: 8px;
+                    }
+                    &.type1{
+                        &::before{
+                            background-color: #ff85b4;
+                        }
+                        &.active{
+                            color: #ff85b4;
+                        }
+                    }
+                    &.type2{
+                        &::before{
+                            background-color: #c1e212;
+                        }
+                        &.active{
+                            color: #c1e212;
+                        }
+                    }
+                    &.type3{
+                        &::before{
+                            background-color: #4791ff;
+                        }
+                        &.active{
+                            color: #4791ff;
+                        }
+                    }
+                    &.type4{
+                        &::before{
+                            background-color: #02bc77;
+                        }
+                        &.active{
+                            color: #02bc77;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #chartType1{
+        position: absolute;
+        bottom: -15px;
+        width: 400px;
+        height: 200px;
+        svg{
+            opacity: 0;
+            position: absolute;
+            bottom: -160px;
+            &.active{
+                animation: areaInteractive 1.5s 0s ease-in 1 forwards;
+            }
+        }
+    }
+    @keyframes areaInteractive {
+        0%{
+        opacity: 0;
+        bottom: -160px;
+        }
+        50%{
+            opacity: .1;
+            bottom: -30px;
+        }
+        100%{
+            opacity: 1;
+            bottom: 0;
+        }
+    }
+    @keyframes pointEffect {
+        0%{
+        opacity: 1;
+        }
+        50%{
+            opacity: .5;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    @keyframes pointLine {
+        0%{
+            height: 60%;
+            
+        }
+        1%{
+            opacity: 1;
+        }
+        80%{
+            height: 90%;
+            opacity: 1;
+        }
+        100%{
+            height: 90%;
+            opacity: 1;
+        }
+    }
+
+    // 2번 차트 샘플 구현 /*///////////////////////////
+    .chart_box2{
+        max-width: 640px;
+        background: #4d43c4;
+        border-radius: 10px;
+        padding: 20px 10px;
+        .tit{
+            position: relative;
+            font-size: 34px;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 0 10px 45px;
+            color: #fff;
+            &::after{
+                content:"";
+                display: block;
+                position: absolute;
+                left: 10px;
+                top: 8px;
+                background: url("../../assets/chart/icon/ico_ranking.png") no-repeat 0 0;
+                width: 26px;
+                height: 22px;
+                background-size: 100% 100%;
+            }
+        }
+        .graph_wrap{
+            @include clearBoth();
+            margin: 30px 0;
+            .in_graph_list{
+                float: left;
+                margin: 0 5px;
+                text-align: center;
+                >p{
+                    font-size: 15px;
+                    color: #fff;
+                    margin-bottom: 10px;
+                }
+                .graph_con{
+                    position: relative;
+                    display:inline-block;
+                    width: 112px;
+                    height: 112px;
+                    border-radius: 50%;
+                    background: conic-gradient(#8b22ff 0% 0%,#dcdfe4 0% 100%);
+                    transition: 10s;
+                    p.ranking{
+                        background: #fff;
+                        display : inline-block;
+                        position: absolute;
+                        z-index: 40;
+                        top:50%; left:50%;
+                        width:100px;
+                        height:100px;
+                        border-radius: 50%;
+                        text-align:center; 
+                        font-size:14px;
+                        font-weight: bold;
+                        line-height: 24px;
+                        transform: translate(-50%, -50%);
+                        span{
+                            display: block;
+                            font-size:18px;
+                            font-weight: bold;
+                            padding-top: 32px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 3번 차트 샘플 구현 /*///////////////////////////
+    .chart_box3{
+        max-width: 640px;
+        background: #4d43c4;
+        border-radius: 10px;
+        padding: 30px;
+        .graph_tit{
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;  
+            margin-bottom: 30px;      
+        }
+        .graph{
+            position: relative;
+            background: #dcdfe4;
+            border-radius: 5px;
+            width: 300px;
+            height: 20px;
+            .bar1{
+                position: absolute;
+                left: -1px;
+                height: 20px;
+                border-radius: 5px 0 0 5px;
+                background: #2969ba;
+                z-index: 30;
+                width: 0;
+                transition: all 3s ease;
+            }
+            .bar2{
+                position: absolute;
+                left: -1px;
+                height: 20px;
+                border-radius: 5px;
+                background: #59c39b;
+                width: 0;
+                transition: all 2s ease;
+            }
+        }
+    }
+
+    // 4번 차트 샘플 구현 /*///////////////////////////
+    .chart_box4{
+        max-width: 640px;
+        background: #4d43c4;
+        border-radius: 10px;
+        padding: 30px 30px 100px;
+        .graph_tit{
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+
+        }
+        .graph_bar{
+            position: relative;
+            border-bottom: 3px solid #dddddd;   
+            @include clearBoth();
+            height: 200px;
+            .graph_bar_list{
+                position: relative;
+                float: left;
+                width: 40px;
+                height: 200px;
+                margin-left: 35px;
+                .stick{
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    bottom: 3px;
+                    width: 40px;
+                    height: 0;
+                    border-radius: 5px 5px 0 0;
+                    transition: all 1s ease-in-out;
+                    .percent{
+                        position: absolute;
+                        top: -20px;
+                        display: none;
+
+                    }
+                    .tolltip{
+                        display: none;
+                        position: absolute;
+                        top: -55px;
+                        left: 50%;
+                        z-index: 99;
+                        transform: translateX(-50%);
+                        color: #89e9f0;
+                        background: #000;
+                        border-radius: 5px;
+                        text-align: center;
+                        padding: 6px 10px 7px;
+                        white-space: nowrap;
+                        &::after{
+                            content: "▼";
+                            display: block;
+                            position: absolute;
+                            bottom: -9px;
+                            right: 20px;
+                            color: #000;
+                        }
+                    }
+                }
+                .bar_infro{
+                    position: absolute;
+                    bottom: -45px;
+                    left: -5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #fff;
+                    padding: 0 0 0 15px;
+                    white-space: nowrap;
+                    line-height: 18px;
+                    &::before{
+                        position: absolute;
+                        left: 0;
+                        top: 5px;
+                        content:"";
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        display: block;
+                    }
+                }
+                &.type1{
+                    .stick{
+                        background: #e22d72;
+                        .percent{
+                            color: #e22d72;
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #e22d72;
+                        }
+                    }
+                }
+                &.type2{
+                    .stick{
+                        background: #59c39b;
+                        .percent{
+                            color: #fff;
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #59c39b;
+                        }
+                    }
+                }
+                &.type3{
+                    .stick{
+                        background: #4791ff;
+                        .percent{
+                            color: #fff;
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #4791ff;
+                        }
+                    }
+                }
+                &.type4{
+                    .stick{
+                        background: #8a29ba;
+                        .percent{
+                            color: #fff;
+                            font-size: 14px;
+                            letter-spacing: .2px;
+                        }
+                    }
+                    .bar_infro{
+                        &::before{
+                            background: #8a29ba;
+                        }
+                    }
+                }
+            }
+            .graph_line{
+                display: none;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background: #e22d72;
+                height: 1px;
+                width: 0;
+                text-indent: -9999px;
+                transition: all 1s ease-in-out;
+            }
+        }
+    }
+}
+
+.test_flex_gauge {
+    display:flex;
+    padding: 0.24rem 0.08rem;
+    @include color(background-color, ln5);
+    .gauge_chart {
+        margin: 0 0.2rem;
+        flex-direction: row;
+
+    }
+}
