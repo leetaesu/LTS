@@ -6,17 +6,25 @@ strong.red{
 }
 .strength{
     p{
-        margin-bottom: 0;
+        position: relative;
+        margin-bottom: 10px;
         margin-left: 15px;
-        line-height: 24px;
+        line-height: 15px;
         font-size: 12px;
         color: #dfdfdf;
         font-weight: bold;
+        padding-left: 20px;
         i{
+            position: absolute;
+            left: 0;
+            top: 3px;
             color: #fff;
             margin-right: 10px;
         }
     }
+}
+.main_lineH{
+    line-height: 28px;
 }
 .profile_down{
     a{
