@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-mode UI · 하나의 소스, 여러 모드</title>
+<style>
+/* 하나의 소스: 색은 모드 변수만 바꾸고, 컴포넌트 규칙은 한 벌만 쓴다. */
+:root,[data-mode="dark"]{--bg:#0f1218;--card:#181c25;--line:#262b38;--ink:#e8ecf4;--sub:#8b93a7;--up:#ff5a6a;--down:#4d8dff;--accent:#7c5cff;--chip:#222838}
+[data-mode="mint"]{--bg:#effaf6;--card:#fff;--line:#d5eee5;--ink:#0f2f26;--sub:#5f8a7c;--up:#e5484d;--down:#2f7de1;--accent:#12b886;--chip:#e2f6ee}
+[data-mode="classic"]{--bg:#f1efe9;--card:#fbfaf6;--line:#dcd7c9;--ink:#2b2a26;--sub:#8a8574;--up:#c2410c;--down:#1d4ed8;--accent:#8a6d3b;--chip:#ebe7da}
+[data-mode="light"]{--bg:#f4f6fb;--card:#fff;--line:#e3e7f0;--ink:#171a22;--sub:#6b7385;--up:#e5484d;--down:#2f6fed;--accent:#2f6fed;--chip:#eef1f8}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bg);color:var(--ink);font:14px/1.5 "Inter","Pretendard Variable",Pretendard,"Malgun Gothic",sans-serif;transition:background .3s,color .3s}
+.stage{width:min(880px,100%);display:grid;gap:18px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.bar h1{margin:0;font-size:15px;letter-spacing:-.01em}
+.bar small{display:block;color:var(--sub);font-size:12px;font-weight:400}
+.seg{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.seg button{padding:7px 14px;border:0;border-radius:7px;background:none;color:var(--sub);font:600 12.5px inherit;cursor:pointer;transition:.2s}
+.seg button[aria-pressed=true]{background:var(--accent);color:#fff}
+.app{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+.app.m{grid-template-columns:1fr;max-width:380px;margin:0 auto;width:100%}
+.card{padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--card);transition:.3s}
+.k{color:var(--sub);font-size:12px}
+.price{margin:4px 0 2px;font-size:30px;font-weight:800;letter-spacing:-.02em}
+.up{color:var(--up);font-weight:700}.down{color:var(--down);font-weight:700}
+svg{width:100%;height:120px;display:block;margin-top:10px}
+.bars{display:flex;gap:3px;align-items:flex-end;height:120px;margin-top:10px}
+.bars i{flex:1;border-radius:3px 3px 0 0;background:var(--accent);opacity:.85;transition:.4s}
+.bars i.d{background:var(--down)}
+.rows{display:grid;gap:8px;margin-top:10px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:10px;background:var(--chip)}
+.row b{font-weight:700}
+.chip{display:inline-block;padding:2px 9px;border-radius:999px;background:var(--chip);color:var(--sub);font-size:11.5px;font-weight:600}
+.btn{width:100%;margin-top:12px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:700 14px inherit;cursor:pointer}
+.tok{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.tok span{padding:3px 8px;border:1px solid var(--line);border-radius:6px;font:500 11px ui-monospace,monospace;color:var(--sub)}
+.tok i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+</style>
+</head>
+<body data-mode="dark">
+<div class="stage">
+  <div class="bar">
+    <h1>하나의 소스, 여러 모드<small>색 토큰만 바꾸고 컴포넌트 규칙은 한 벌로 유지합니다 · 샘플 데이터</small></h1>
+    <div class="seg" id="modes" role="group" aria-label="모드">
+      <button data-m="dark" aria-pressed="true">다크</button><button data-m="mint" aria-pressed="false">민트</button><button data-m="classic" aria-pressed="false">클래식</button><button data-m="light" aria-pressed="false">라이트</button>
+    </div>
+    <div class="seg" id="dev" role="group" aria-label="디바이스">
+      <button data-d="pc" aria-pressed="true">PC</button><button data-d="m" aria-pressed="false">모바일</button>
+    </div>
+  </div>
+  <div class="app" id="app">
+    <div class="card">
+      <div class="k">SAMPLE ASSET</div>
+      <div class="price">12,340,000</div>
+      <div><span class="up">▲ 1.82%</span> <span class="k">전일 대비</span></div>
+      <div class="bars" id="bars"></div>
+      <div class="tok" id="tok"></div>
+    </div>
+    <div class="card">
+      <div class="k">호가 / 체결 <span class="chip">SAMPLE</span></div>
+      <div class="rows">
+        <div class="row"><span>매도 잔량</span><b class="down">1,284</b></div>
+        <div class="row"><span>현재가</span><b>12,340</b></div>
+        <div class="row"><span>매수 잔량</span><b class="up">2,016</b></div>
+      </div>
+      <button class="btn" type="button">주문하기</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var body = document.body, app = document.getElementById("app"), bars = document.getElementById("bars"), tok = document.getElementById("tok");
+  var data = [32,40,36,52,48,60,55,70,64,78,72,88,80,94,86,100];
+  data.forEach(function (v, i) { var e = document.createElement("i"); e.style.height = v + "%"; if (i % 5 === 2) e.className = "d"; bars.appendChild(e); });
+  function tokens() {
+    var cs = getComputedStyle(body);
+    tok.innerHTML = ["--bg","--card","--ink","--accent","--up","--down"].map(function (n) {
+      return '<span><i style="background:' + cs.getPropertyValue(n) + '"></i>' + n + '</span>';
+    }).join("");
+  }
+  function setMode(m) {
+    body.setAttribute("data-mode", m);
+    document.querySelectorAll("#modes button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.m === m); });
+    tokens();
+    try { history.replaceState(null, "", "#" + m); } catch (e) {}
+  }
+  document.getElementById("modes").onclick = function (e) { var b = e.target.closest("button"); if (b) setMode(b.dataset.m); };
+  document.getElementById("dev").onclick = function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    app.classList.toggle("m", b.dataset.d === "m");
+    document.querySelectorAll("#dev button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+  };
+  var h = (location.hash || "").slice(1);
+  setMode(["dark","mint","classic","light"].indexOf(h) > -1 ? h : "dark");
+})();
+</script>
+</body>
+</html>
