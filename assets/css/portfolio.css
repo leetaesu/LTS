@@ -463,3 +463,29 @@ body{transition:background .2s,color .2s}
 .steps span.d{font-size:13.5px;line-height:1.5}.steps b{font-size:15px}
 .io i{font-size:12.5px}
 .stage .no{font-size:12.5px}
+
+/* 출간 전자책 (eBook) 카드 */
+.books-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:16px}
+.bcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;transition:border-color .2s,transform .2s}
+.bcard:hover{border-color:color-mix(in srgb,var(--violet) 55%,transparent);transform:translateY(-3px)}
+.bcard__thumb{position:relative;background:var(--low);aspect-ratio:600/780;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.bcard__thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .3s ease}
+.bcard:hover .bcard__thumb img{transform:scale(1.03)}
+.bcard__body{display:flex;flex-direction:column;flex:1;padding:20px}
+.bcard__chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.bcard h3{font:700 18px/1.35 var(--sans);color:var(--white);margin-bottom:6px}
+.bcard .bcard__sub{font:600 13px/1.4 var(--sans);color:var(--violet);margin-bottom:10px}
+.bcard p{font-size:14px;line-height:1.65;color:var(--sub);margin-bottom:16px;flex:1}
+.bcard__links{display:flex;flex-wrap:wrap;gap:8px;padding-top:14px;border-top:1px solid var(--line)}
+.bcard__btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:6px;font:600 12.5px var(--mono);background:var(--mid);color:var(--ink);border:1px solid var(--line2);transition:.15s;text-decoration:none}
+.bcard__btn:hover{background:var(--violet);color:var(--on-violet);border-color:var(--violet)}
+.bcard__btn.aladin{border-color:color-mix(in srgb,#eb2f96 40%,var(--line2))}
+.bcard__btn.aladin:hover{background:#eb2f96;color:#fff;border-color:#eb2f96}
+.bcard__btn.kyobo{border-color:color-mix(in srgb,#52c41a 40%,var(--line2))}
+.bcard__btn.kyobo:hover{background:#389e0d;color:#fff;border-color:#389e0d}
+.bcard__btn.upaper{border-color:color-mix(in srgb,var(--violet) 40%,var(--line2))}
+.bcard__btn.upaper:hover{background:var(--violet);color:var(--on-violet);border-color:var(--violet)}
+@media (max-width:960px){
+  .books-grid{grid-template-columns:1fr}
+  .bcard__thumb{max-height:360px}
+}
